@@ -1,8 +1,8 @@
-var React = require('react');
+import React from 'react';
 
 require('./style.scss');
 
-export default class Chart extends React.Component {
+export default class EthnicChart extends React.Component {
 	closeChart(e) {
 		document.getElementById("ethnic_chart").style.display = 'none';
 	}

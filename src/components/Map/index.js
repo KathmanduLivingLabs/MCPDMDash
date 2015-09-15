@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react';
+import EthnicChart from '../EthnicChart';
 var districtsJson = require('../../data/district1.geojson');
 
 require('./style.scss');
@@ -17,7 +18,9 @@ export default class Map extends React.Component {
 		this.lmap = L.map('map').setView([27.8, 85.8333], 9);
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-			zoomControl: false
+			zoomControl: false,
+			maxZoom: 9,
+			minZoom: 9
 		}).addTo(this.lmap);
 		this.geoJson = L.geoJson(districtsJson, {
 			style: this.styleMe.bind(this),
@@ -76,7 +79,10 @@ export default class Map extends React.Component {
 
 	render() {
 		return(
-			<div id="map"></div>
+			<div className="map-container">
+				<div id="map"></div>
+				<EthnicChart />
+			</div>
 		);
 	}
 }
