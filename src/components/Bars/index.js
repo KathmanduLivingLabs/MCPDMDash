@@ -21,8 +21,6 @@ export default class Bars extends React.Component {
 		} else if(typeof this.props.utility !== 'undefined') {
 			return null;
 		} else if(typeof this.props.area_of_spending !== 'undefined') {
-			console.log("hello");
-			console.log(this.props.area_of_spending);
 			return(
 					<div>
 					{

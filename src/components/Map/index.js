@@ -53,7 +53,6 @@ export default class Map extends React.Component {
 	}
 
 	setClickedDistrict(e) {
-		console.log(e.target);
 		this.props.setSelectedDistrict(e.target);
 		document.getElementById('ethnic_chart').style.display = 'block';
 	}

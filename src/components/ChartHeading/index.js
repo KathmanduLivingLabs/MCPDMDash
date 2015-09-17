@@ -14,7 +14,6 @@ export default class ChartHeading extends React.Component {
 	render() {
 		return(
 			<div className="chart-heading">
-				{()=>{console.log(this.props.activeView)}()}
 				{this.heading[this.props.activeView]}
 			</div>
 		);

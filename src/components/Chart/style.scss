@@ -6,6 +6,13 @@ needs {
 	margin-left: 5%;
 }
 
+.priorities {
+	margin-left: 5%;
+}
+
+.debt {
+	margin-top: 20px;
+}
 .needs-met {
 	display: inline-block;
 	width: 500px;
@@ -58,6 +65,42 @@ needs {
 	}
 }
 
+.area-spending {
+	position: relative;
+	width: 500px;
+	height: 250px;
+	margin-left: 20%;
+	margin-bottom: 60px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 20px;
+	}
+	.ct-series-b .ct-bar {
+		stroke-width: 20px;
+	}
+}
+
+.have-received-debt {
+	display: inline-block;
+	width: 500px;
+	height: 300px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 30px;
+	}
+}
+
+.have-not-received-debt {
+	display: inline-block;
+	width: 500px;
+	height: 300px;
+	margin-left: -110px;
+	.ct-series-a .ct-bar {
+		stroke: #FFA9A1;
+		stroke-width: 30px;
+	}
+}
+
 .ct-horizontal {
 	border-top: 1px solid #979797;
 	padding-top: 5px;
@@ -85,4 +128,10 @@ needs {
 .chart-title-solar {
 	font-size: 1.4em;
 	margin-left: -150px;
+}
+
+.chart-title-debt {
+	font-size: 1.4em;
+	margin-top: -20px;
+	margin-left: 85px;
 }
