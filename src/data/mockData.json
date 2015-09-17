@@ -1,0 +1,55 @@
+{
+	"district_wise": [
+		{
+			"district_name": "Sindhupalchowk",
+			"needs_met": 50,
+			"needs_unmet": 20,
+			"debt_taken": 35,
+			"debt_not_taken": 42		
+		},
+		{
+			"district_name": "Dolakha",
+			"needs_met": 5,
+			"needs_unmet": 100,
+			"debt_taken": 25,
+			"debt_not_taken": 62		
+		},
+		{
+			"district_name": "Kavre",
+			"needs_met": 55,
+			"needs_unmet": 70,
+			"debt_taken": 5,
+			"debt_not_taken": 72		
+		},
+		{
+			"district_name": "Nuwakot",
+			"needs_met": 65,
+			"needs_unmet": 10,
+			"debt_taken": 55,
+			"debt_not_taken": 36		
+		}
+	],
+	"aggregate": {
+		"solar": {
+			"frequency": [
+				{"daily": 45},
+				{"frequently": 18},
+				{"seldom": "7"},
+				{"never": "4"},
+				{"not_received": 15}
+			],
+			"utility": [
+				{"more_secure": 60},
+				{"easier_for_childern": 35},
+				{"charging_money": 22}
+			]
+		},
+		"priorities": {
+			"area_of_spending": [
+				{"food": [65, 40]},
+				{"construction_and_labour": [35, 50]},
+				{"basic_household": [25, 45]}
+			]
+		}
+	}
+}

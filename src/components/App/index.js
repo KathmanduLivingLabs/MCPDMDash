@@ -10,7 +10,7 @@ var viewConstants = {
 	survey: 'survey_completion',
 	needs: 'needs_fullfilled',
 	solar: 'solar_lamp_impact',
-	priorities : 'Priorities for Spending'
+	priorities : 'priorities_for_spending'
 };
 
 export default class App extends React.Component {
@@ -42,7 +42,9 @@ export default class App extends React.Component {
 				{
 					this.state.activeView === viewConstants.survey ?
 						<Map setSelectedDistrict={this.setSelectedDistrict.bind(this)} /> :
-						<Chart />
+						<div className="chart-container">
+							<Chart activeView={this.state.activeView}/>
+						</div>
 				}
 				</div>
 			</div>

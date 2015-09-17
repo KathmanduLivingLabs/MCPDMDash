@@ -6,7 +6,7 @@ var viewConstants = {
 	survey: 'survey_completion',
 	needs: 'needs_fullfilled',
 	solar: 'solar_lamp_impact',
-	priorities : 'Priorities for Spending'
+	priorities : 'priorities_for_spending'
 };
 
 export default class NavBar extends React.Component {
