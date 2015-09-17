@@ -3,6 +3,7 @@ import Map from '../Map';
 import EthnicChart from '../EthnicChart';
 import NavBar from '../NavBar';
 import Chart from '../Chart';
+import Footer from '../Footer';
 
 require('./style.scss');
 
@@ -47,6 +48,7 @@ export default class App extends React.Component {
 						</div>
 				}
 				</div>
+				<Footer />
 			</div>
 		);
 	}
