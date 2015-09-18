@@ -36,9 +36,10 @@ needs {
 
 .frequency {
 	position: relative;
-	width: 500px;
+	width: 520px;
 	height: 250px;
 	margin-left: 20%;
+	margin-righ: 20px;
 	.ct-series-a .ct-bar {
 		stroke: #8DCCFF;
 		stroke-width: 30px;
@@ -135,3 +136,8 @@ needs {
 	margin-top: -20px;
 	margin-left: 85px;
 }
+
+.percent-circle {
+	fill: rgba(0, 0, 0, 0) !important;
+}
+

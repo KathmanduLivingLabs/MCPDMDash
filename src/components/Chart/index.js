@@ -71,6 +71,35 @@ export default class Chart extends React.Component {
 		}
 	}
 
+	makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
+		chart.on('draw', function(data) {
+			if(data.type === 'bar') {
+					if(horizBar === false) {
+					data.group.append(new Chartist.Svg('circle', {
+						cx: data.x2,
+						cy: data.y2,
+						r: 25
+					}, 'percent-circle'));
+					data.group.append(new Chartist.Svg('text', {
+						x: data.x2 - textMarginX,
+						y: data.y2 - textMarginY,
+					}, 'percent-text').text(data.value[valueAxis]));
+				}
+				if(horizBar === true) {
+					data.group.append(new Chartist.Svg('circle', {
+						cx: data.x2,
+						cy: data.y2,
+						r: 25
+					}, 'percent-circle'));
+					data.group.append(new Chartist.Svg('text', {
+						x: data.x2 - textMarginX,
+						y: data.y2 - textMarginY,
+					}, 'percent-text').attr({transform:'rotate(90 ' + data.x2 + ' ' + data.y2 + ')'}).text(data.value[valueAxis]));
+				}
+			}
+		});
+	}
+
 	makeChart() {
 		switch(this.props.activeView) {
 			case viewConstants.needs: 
@@ -84,8 +113,10 @@ export default class Chart extends React.Component {
 					},
 					height: 400
 				};
-				new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
-				new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
+				var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
+				var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
+				this.makePercentCircles(chartNeedsMet, 'y', 8, 5, false);
+				this.makePercentCircles(chartNeedsUnmet, 'y', 8, 5, false);
 				break;
 			case viewConstants.solar: 
 				var options = {
@@ -98,10 +129,12 @@ export default class Chart extends React.Component {
 						offset: 100,
 					},
 					horizontalBars: true,
-					reverseData: true
+					reverseData: true,
 				};
-				new Chartist.Bar('.frequency', this.chartSolarData[0], options);
-				new Chartist.Bar('.utility', this.chartSolarData[1], options);
+				var chartSolarFrequency = new Chartist.Bar('.frequency', this.chartSolarData[0], options);
+				var chartSolarUtility = new Chartist.Bar('.utility', this.chartSolarData[1], options);
+				this.makePercentCircles(chartSolarFrequency, 'x', 10, 3, true);
+				this.makePercentCircles(chartSolarUtility, 'x', 10, 3, true);
 				break;
 			case viewConstants.priorities:
 				var options_1 = {
@@ -127,9 +160,12 @@ export default class Chart extends React.Component {
 						offset: 100
 					},
 				};
-				new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_1);
-				new Chartist.Bar('.have-received-debt', this.chartPrioritiesData[1], options_2);
-				new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
+				var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_1);
+				var chartPrioritiesDebt1 = new Chartist.Bar('.have-received-debt', this.chartPrioritiesData[1], options_2);
+				var chartPrioritiesDebt2 = new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
+				this.makePercentCircles(chartPrioritiesSpending, 'x', 10, 3, true);
+				this.makePercentCircles(chartPrioritiesDebt1, 'y', 8, 5, false);
+				this.makePercentCircles(chartPrioritiesDebt2, 'y', 8, 5, false);
 				break;
 
 		}

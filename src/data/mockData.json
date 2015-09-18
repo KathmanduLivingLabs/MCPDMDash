@@ -23,7 +23,7 @@
 		},
 		{
 			"district_name": "Nuwakot",
-			"needs_met": 65,
+			"needs_met": 100,
 			"needs_unmet": 10,
 			"debt_taken": 55,
 			"debt_not_taken": 36		
@@ -33,7 +33,7 @@
 		"solar": {
 			"frequency": [
 				{"daily": 45},
-				{"frequently": 18},
+				{"frequently": 100},
 				{"seldom": "7"},
 				{"never": "4"},
 				{"not_received": 15}
