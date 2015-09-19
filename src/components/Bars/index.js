@@ -3,6 +3,7 @@ import React from 'react';
 require('./style.scss');
 
 export default class Bars extends React.Component {
+	/*
 	makeBars() {
 		if(typeof this.props.needs !== 'undefined') {
 		return(
@@ -43,4 +44,5 @@ export default class Bars extends React.Component {
 			})()
 		);
 	}
+	*/
 }
