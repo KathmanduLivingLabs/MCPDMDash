@@ -142,11 +142,11 @@ export default class PrioritiesBar extends React.Component {
 					<span className="chart-title-debt">Have the receipients taken any debt?</span>
 				<div className="debt">
 					<div className="have-received-debt">
-						<span className="chart-title-needs">Percentage of Needs Met</span>
+						<span className="chart-title-needs">Percentage of Debt Taken</span>
 					</div>
 					<div className="vertical-line"></div>
 					<div className="have-not-received-debt">
-						<span className="chart-title-needs">Percentage of Needs Met</span>
+						<span className="chart-title-needs">Percentage of Debt Not Taken</span>
 					</div>
 				</div>
 			</div>
