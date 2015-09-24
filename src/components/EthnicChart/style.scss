@@ -1,13 +1,12 @@
 .ethnic-chart {
 	position: absolute;
-	background-color: rgba(225,225,225,0.94);
+	background-color: white;
 	outline: #cccccc thin solid;
 	width: 550px;
 	height: 400px;
 	top: 20%;
 	left: 50%;
 	margin-left: -275px;
-	display: none;
 }
 
 .close-button {
@@ -21,4 +20,30 @@
 	&:hover {
 		background-color: rgba(255, 255, 255, 0.99);
 	}
+}
+
+.actual-chart {
+	width: 87%;
+	height: 85%;
+	margin: auto;
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+.bars-and-label {
+	height: 58px;
+}
+
+.bars {
+	background: url('../../images/person.svg');
+	background-size: contain;
+	height: 24px;
+	width: 100%;
+	margin-left: 25px;
+}
+
+.progress {
+	background: url('../../images/green_person.svg');
+	background-size: contain;
+	height: 24px;
 }

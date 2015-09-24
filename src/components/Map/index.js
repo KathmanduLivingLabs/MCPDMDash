@@ -16,7 +16,8 @@ export default class Map extends React.Component {
 
 	setupMap() {
 		this.lmap = L.map('map').setView([27.8, 85.8333], 9);
-		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+
+		var tileLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 			zoomControl: false,
 			maxZoom: 9,
@@ -26,6 +27,8 @@ export default class Map extends React.Component {
 			style: this.styleMe.bind(this),
 			onEachFeature: this.onEachFeature.bind(this)
 		}).addTo(this.lmap);
+		console.log(tileLayer._container);
+		tileLayer._container.className += ' fade-base-map';
 	}
 
 	onEachFeature(feature, layer) {
@@ -53,8 +56,9 @@ export default class Map extends React.Component {
 	}
 
 	setClickedDistrict(e) {
+		console.log(e.target);
 		this.props.setSelectedDistrict(e.target);
-		document.getElementById('ethnic_chart').style.display = 'block';
+		this.props.setCloseButton();
 	}
 
 	getColor(percent) {
@@ -80,7 +84,6 @@ export default class Map extends React.Component {
 		return(
 			<div className="map-container">
 				<div id="map"></div>
-				<EthnicChart />
 			</div>
 		);
 	}

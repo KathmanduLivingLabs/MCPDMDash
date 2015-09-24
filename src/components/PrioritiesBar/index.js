@@ -119,9 +119,9 @@ export default class PrioritiesBar extends React.Component {
 		this.setChartData(
 			// no data for composite graph only data for single graph. ask nirab dai
 			[[
-				[Number(barData.district_wise[0].needs_met), Number(barData.district_wise[1].needs_met)],
-				[Number(barData.district_wise[1].needs_met), Number(barData.district_wise[2].needs_met)],
-				[Number(barData.district_wise[2].needs_met), Number(barData.district_wise[0].needs_met)],
+				[Number(barData.aggregate.area_of_spending[0]), Number(barData.aggregate.area_of_spending[3])],
+				[Number(barData.aggregate.area_of_spending[1]), Number(barData.aggregate.area_of_spending[3])],
+				[Number(barData.aggregate.area_of_spending[2]), Number(barData.aggregate.area_of_spending[3])],
 			], [
 				Number(barData.district_wise[0][dataConstants.debt_taken]),
 				Number(barData.district_wise[1][dataConstants.debt_taken]),

@@ -1,6 +1,6 @@
 import React from 'react';
 
-var barData = require('../../data/realData.json');
+var barData = require('../../data/mockData.json');
 
 require('./style.scss');
 

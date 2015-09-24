@@ -19,7 +19,8 @@ export default class App extends React.Component {
 		super();
 		this.state = {
 			activeView: viewConstants.survey,
-			selectedDistrict: null
+			selectedDistrict: null,
+			closeButton: true
 		};
 	}
 
@@ -34,6 +35,12 @@ export default class App extends React.Component {
 			selectedDistrict: selectedDistrict
 		});
 	}
+	
+	setCloseButton() {
+		this.setState({
+			closeButton: !this.state.closeButton
+		});
+	}
 
 	render() {
 		return(
@@ -42,7 +49,15 @@ export default class App extends React.Component {
 				<div className="content">
 				{
 					this.state.activeView === viewConstants.survey ?
-						<Map setSelectedDistrict={this.setSelectedDistrict.bind(this)} /> :
+						<div className="map-and-echart">
+							<Map setSelectedDistrict={this.setSelectedDistrict.bind(this)} 
+									setCloseButton={this.setCloseButton.bind(this)}/> 
+							{
+							this.state.closeButton ? null :
+							<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
+									selectedDistrict={this.state.selectedDistrict} />
+							}
+						</div>:
 						<div className="chart-container">
 							<Chart activeView={this.state.activeView}/>
 						</div>
