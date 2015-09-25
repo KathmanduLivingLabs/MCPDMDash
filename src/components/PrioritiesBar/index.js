@@ -37,11 +37,9 @@ export default class PrioritiesBar extends React.Component {
 	
 	setChartData(data) {
 		this.chartPrioritiesData[0] = {
-			labels: ['Food', 'Construction Material and Labour', 'Basic Household'],
-			series: [
-				[data[0][0][0], data[0][1][0], data[0][2][0]],
-				[data[0][0][1], data[0][1][1], data[0][2][1]]
-			]
+			labels: ['Food', 'Construction Material and Labour', 'Basic Household', 'Savings'],
+			series: [[data[0][0], data[0][1], data[0][2]], 
+							[, , , data[0][3]]]
 		};
 		this.chartPrioritiesData[1] = {
 			labels: ['Sindhupalchok', 'Dolakha', 'Nuwakot', 'Kavre'],
@@ -76,7 +74,7 @@ export default class PrioritiesBar extends React.Component {
 					data.group.append(new Chartist.Svg('text', {
 						x: data.x2 - textMarginX,
 						y: data.y2 - textMarginY,
-					}, 'percent-text').attr({transform:'rotate(90 ' + data.x2 + ' ' + data.y2 + ')'}).text(data.value[valueAxis]));
+					}, 'percent-text') .text(data.value[valueAxis]).text('%'));
 				}
 			}
 		});
@@ -106,22 +104,23 @@ export default class PrioritiesBar extends React.Component {
 				offset: 100
 			},
 		};
-		var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_1);
+		var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_2);
 		var chartPrioritiesDebt1 = new Chartist.Bar('.have-received-debt', this.chartPrioritiesData[1], options_2);
 		var chartPrioritiesDebt2 = new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
 
-		this.makePercentCircles(chartPrioritiesSpending, 'x', 10, 3, true);
-		this.makePercentCircles(chartPrioritiesDebt1, 'y', 8, 5, false);
-		this.makePercentCircles(chartPrioritiesDebt2, 'y', 8, 5, false);
+		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
+		this.makePercentCircles(chartPrioritiesDebt1, 'y', 8, 5, true);
+		this.makePercentCircles(chartPrioritiesDebt2, 'y', 8, 5, true);
 	}
 	
 	render() {
 		this.setChartData(
 			// no data for composite graph only data for single graph. ask nirab dai
 			[[
-				[Number(barData.aggregate.area_of_spending[0]), Number(barData.aggregate.area_of_spending[3])],
-				[Number(barData.aggregate.area_of_spending[1]), Number(barData.aggregate.area_of_spending[3])],
-				[Number(barData.aggregate.area_of_spending[2]), Number(barData.aggregate.area_of_spending[3])],
+				Number(barData.aggregate.area_of_spending[0]),
+				Number(barData.aggregate.area_of_spending[1]),
+				Number(barData.aggregate.area_of_spending[2]), 
+				Number(barData.aggregate.area_of_spending[3])
 			], [
 				Number(barData.district_wise[0][dataConstants.debt_taken]),
 				Number(barData.district_wise[1][dataConstants.debt_taken]),
@@ -137,16 +136,16 @@ export default class PrioritiesBar extends React.Component {
 		return(
 			<div className="priorities">
 				<div className="area-spending">
-					<span className="chart-title-solar">Top Three Area of Spending</span>
+					<span className="chart-title-spending">Top Three Area of Spending</span>
 				</div>
 					<span className="chart-title-debt">Have the receipients taken any debt?</span>
 				<div className="debt">
 					<div className="have-received-debt">
-						<span className="chart-title-needs">Percentage of Debt Taken</span>
+						<span className="chart-title-received-debt">Percentage of Debt Taken</span>
 					</div>
 					<div className="vertical-line"></div>
 					<div className="have-not-received-debt">
-						<span className="chart-title-needs">Percentage of Debt Not Taken</span>
+						<span className="chart-title-received-debt">Percentage of Debt Not Taken</span>
 					</div>
 				</div>
 			</div>

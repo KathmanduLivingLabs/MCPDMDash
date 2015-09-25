@@ -70,7 +70,8 @@ export default class SolarBar extends React.Component {
 				data.group.append(new Chartist.Svg('text', {
 					x: data.x2 - textMarginX,
 					y: data.y2 - textMarginY,
-				}, 'percent-text').attr({transform:'rotate(90 ' + data.x2 + ' ' + data.y2 + ')'}).text(data.value[valueAxis]));
+				}, 'percent-text').attr({transform:'rotate(90 ' + data.x2 + ' ' + data.y2 + ')'})
+							.text(data.value[valueAxis]).text('%'));
 			}
 		});
 	}
@@ -90,8 +91,8 @@ export default class SolarBar extends React.Component {
 		};
 		var chartSolarFrequency = new Chartist.Bar('.frequency', this.chartSolarData[0], options);
 		var chartSolarUtility = new Chartist.Bar('.utility', this.chartSolarData[1], options);
-		this.makePercentCircles(chartSolarFrequency, 'x', 10, 3, true);
-		this.makePercentCircles(chartSolarUtility, 'x', 10, 3, true);
+		this.makePercentCircles(chartSolarFrequency, 'x', 15, 3, true);
+		this.makePercentCircles(chartSolarUtility, 'x', 15, 3, true);
 	}
 	
 	render() {

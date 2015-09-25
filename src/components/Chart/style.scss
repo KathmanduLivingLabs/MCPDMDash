@@ -67,17 +67,17 @@
 }
 
 .area-spending {
-	position: relative;
-	width: 500px;
-	height: 250px;
-	margin-left: 20%;
-	margin-bottom: 60px;
+	width: 700px;
+	height: 300px;
+	margin-bottom: 80px;
+	margin-left: 80px;
 	.ct-series-a .ct-bar {
 		stroke: #8DCCFF;
-		stroke-width: 20px;
+		stroke-width: 30px;
 	}
 	.ct-series-b .ct-bar {
-		stroke-width: 20px;
+		stroke: #FFA9A1;
+		stroke-width: 30px;
 	}
 }
 
@@ -121,9 +121,14 @@
 }
 
 .chart-title-needs {
-	margin-left: 150px;
+	margin-left: 100px;
 	margin-top: -20px;
 	font-size: 1.4em;
+}
+
+.chart-title-received-debt {
+	margin-left: 180px;
+	font-size: 1.2em;
 }
 
 .chart-title-solar {
@@ -135,6 +140,10 @@
 	font-size: 1.4em;
 	margin-top: -20px;
 	margin-left: 85px;
+}
+
+.chart-title-spending {
+	font-size: 1.4em;
 }
 
 .percent-circle {

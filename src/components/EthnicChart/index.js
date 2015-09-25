@@ -4,7 +4,7 @@ var barData = require('../../data/realData.json');
 
 require('./style.scss');
 
-const ETHNIC_GROUPS = ['Adibasi Janjati Newar', 'Brahmin', 'Chhetri', 'Dalit', 'Madhesi', 'Other'];
+const ETHNIC_GROUPS = ['Adibasi Janjati', 'Brahmin', 'Chhetri', 'Dalit', 'Madhesi', 'Other'];
 
 export default class EthnicChart extends React.Component {
 	constructor() {
