@@ -27,7 +27,6 @@ export default class Map extends React.Component {
 			style: this.styleMe.bind(this),
 			onEachFeature: this.onEachFeature.bind(this)
 		}).addTo(this.lmap);
-		console.log(tileLayer._container);
 		tileLayer._container.className += ' fade-base-map';
 	}
 
@@ -56,9 +55,8 @@ export default class Map extends React.Component {
 	}
 
 	setClickedDistrict(e) {
-		console.log(e.target);
 		this.props.setSelectedDistrict(e.target);
-		this.props.setCloseButton();
+		this.props.setCloseButton(false);
 	}
 
 	getColor(percent) {
@@ -83,7 +81,12 @@ export default class Map extends React.Component {
 	render() {
 		return(
 			<div className="map-container">
-				<div id="map"></div>
+				<div id="map">
+					<div className="aggregate-ethinic-btn" 
+						onClick={() => {this.props.setEthinicAggregate(true); this.props.setCloseButton(false)}}>
+						Aggregate Ethnic Distibution
+					</div>
+				</div>
 			</div>
 		);
 	}

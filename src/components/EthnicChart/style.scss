@@ -3,7 +3,7 @@
 	background-color: white;
 	outline: #cccccc thin solid;
 	width: 550px;
-	height: 400px;
+	height: 470px;
 	top: 20%;
 	left: 50%;
 	margin-left: -275px;
@@ -42,8 +42,28 @@
 	margin-left: 25px;
 }
 
+.label {
+	display: inline-block;
+	font-size: 0.9em;
+	padding-right: 10px;
+	border-bottom: 1px solid lightgray;
+	margin-bottom: 6px;
+}
+
+.bar-unit {
+	display: inline-block;
+	font-size: 0.9em;
+	border-bottom: 1px solid lightgrey;
+}
+
 .progress {
 	background: url('../../images/green_person.svg');
 	background-size: contain;
 	height: 24px;
+}
+
+.chart-title {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-bottom: 20px;
 }

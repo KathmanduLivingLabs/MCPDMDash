@@ -20,7 +20,8 @@ export default class App extends React.Component {
 		this.state = {
 			activeView: viewConstants.survey,
 			selectedDistrict: null,
-			closeButton: true
+			closeButton: true,
+			ethinicAggregate: false 
 		};
 	}
 
@@ -36,9 +37,15 @@ export default class App extends React.Component {
 		});
 	}
 	
-	setCloseButton() {
+	setCloseButton(status) {
 		this.setState({
-			closeButton: !this.state.closeButton
+			closeButton: status
+		});
+	}
+
+	setEthinicAggregate(status) {
+		this.setState({
+			ethinicAggregate: status
 		});
 	}
 
@@ -51,11 +58,28 @@ export default class App extends React.Component {
 					this.state.activeView === viewConstants.survey ?
 						<div className="map-and-echart">
 							<Map setSelectedDistrict={this.setSelectedDistrict.bind(this)} 
-									setCloseButton={this.setCloseButton.bind(this)}/> 
+									setCloseButton={this.setCloseButton.bind(this)}
+									setEthinicAggregate={this.setEthinicAggregate.bind(this)}/> 
 							{
-							this.state.closeButton ? null :
-							<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
-									selectedDistrict={this.state.selectedDistrict} />
+								(() => {
+									if(!this.state.closeButton) {
+										if(this.state.ethinicAggregate) {
+											return(
+												<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
+													selectedDistrict={this.state.selectedDistrict} 
+													ethinicAggregate={true}
+													setEthinicAggregate={this.setEthinicAggregate.bind(this)} />
+											);
+										} else {
+											return(
+												<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
+													selectedDistrict={this.state.selectedDistrict} 
+													ethinicAggregate={false}
+													setEthinicAggregate={this.setEthinicAggregate.bind(this)} />
+											);
+										}
+									} else return null;
+								})()
 							}
 						</div>:
 						<div className="chart-container">
