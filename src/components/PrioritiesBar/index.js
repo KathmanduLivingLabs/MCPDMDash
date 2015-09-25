@@ -12,8 +12,8 @@ var viewConstants = {
 };
 
 var dataConstants = {
-	needs_met: 'needs_met',
-	needs_unmet: 'needs_unmet',
+	needs_met: 'Did not Require Additional Urgent Items',
+	needs_unmet: 'Nedded Additional Urgent Items not Present in the Kit',
 	debt_taken: 'Debt Taken Due to Earthquake',
 	debt_not_taken: 'No Debt Due to Earthquake'
 };
@@ -109,8 +109,8 @@ export default class PrioritiesBar extends React.Component {
 		var chartPrioritiesDebt2 = new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
 
 		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
-		this.makePercentCircles(chartPrioritiesDebt1, 'y', 8, 5, true);
-		this.makePercentCircles(chartPrioritiesDebt2, 'y', 8, 5, true);
+		this.makePercentCircles(chartPrioritiesDebt1, 'y', 18, 5, true);
+		this.makePercentCircles(chartPrioritiesDebt2, 'y', 18, 5, true);
 	}
 	
 	render() {
@@ -122,15 +122,37 @@ export default class PrioritiesBar extends React.Component {
 				Number(barData.aggregate.area_of_spending[2]), 
 				Number(barData.aggregate.area_of_spending[3])
 			], [
-				Number(barData.district_wise[0][dataConstants.debt_taken]),
-				Number(barData.district_wise[1][dataConstants.debt_taken]),
-				Number(barData.district_wise[2][dataConstants.debt_taken]),
-				Number(barData.district_wise[3][dataConstants.debt_taken])
+				Math.round((Number(barData.district_wise[0][dataConstants.debt_taken]) /
+				(Number(barData.district_wise[0][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[0][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[1][dataConstants.debt_taken]) /
+				(Number(barData.district_wise[1][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[1][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[2][dataConstants.debt_taken]) /
+				(Number(barData.district_wise[2][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[2][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[3][dataConstants.debt_taken]) /
+				(Number(barData.district_wise[3][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[3][dataConstants.debt_not_taken]))) * 10000) / 100,
 			], [
-				Number(barData.district_wise[0][dataConstants.debt_not_taken]),
-				Number(barData.district_wise[1][dataConstants.debt_not_taken]),
-				Number(barData.district_wise[2][dataConstants.debt_not_taken]),
-				Number(barData.district_wise[3][dataConstants.debt_not_taken])
+				Math.round((Number(barData.district_wise[0][dataConstants.debt_not_taken]) /
+				(Number(barData.district_wise[0][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[0][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[1][dataConstants.debt_not_taken]) /
+				(Number(barData.district_wise[1][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[1][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[2][dataConstants.debt_not_taken]) /
+				(Number(barData.district_wise[2][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[2][dataConstants.debt_not_taken]))) * 10000) / 100,
+
+				Math.round((Number(barData.district_wise[3][dataConstants.debt_not_taken]) /
+				(Number(barData.district_wise[3][dataConstants.debt_taken]) + 
+				 Number(barData.district_wise[3][dataConstants.debt_not_taken]))) * 10000) / 100,
 			]]
 		);
 		return(
