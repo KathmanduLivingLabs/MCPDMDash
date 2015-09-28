@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b6b7f5e4c3905a04c5fc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5a1aa294760a58f10cd9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -39249,7 +39249,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  font: 16px \"Source Sans Pro\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; }\n\n.container {\n  position: relative; }\n\n.chart-container {\n  /*margin-left: 5%;*/ }\n", ""]);
+	exports.push([module.id, "body {\n  font-family: \"Avenir\", \"Lato\", \"Open Sans\", \"Helvetica Nue\", \"Verdana\", sans-serif; }\n\n.container {\n  position: relative; }\n\n.chart-container {\n  /*margin-left: 5%;*/ }\n", ""]);
 
 	// exports
 
