@@ -1,4 +1,8 @@
 .DS_Store
+<<<<<<< Updated upstream
+=======
+.gitignore
+>>>>>>> Stashed changes
 node_modules
 *.swp
 build
