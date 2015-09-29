@@ -8,7 +8,8 @@ export default class ChartHeading extends React.Component {
 		this.heading = {
 			needs_fullfilled: "Were the needs fully met?",
 			solar_lamp_impact: "Solar Lamp Impact",
-			priorities_for_spending: "Priorities for Spending"
+			priorities_for_spending: "Priorities for Spending",
+			others: "Others"
 		}
 	}
 	render() {

@@ -3,6 +3,7 @@ import ChartHeading from '../ChartHeading';
 import NeedsBar from '../NeedsBar';
 import SolarBar from '../SolarBar';
 import PrioritiesBar from '../PrioritiesBar';
+import Others from '../Others';
 
 //var barData = require('../../data/mockData.json');
 var barData = require('../../data/realData.json');
@@ -13,7 +14,8 @@ var viewConstants = {
 	survey: 'survey_completion',
 	needs: 'needs_fullfilled',
 	solar: 'solar_lamp_impact',
-	priorities : 'priorities_for_spending'
+	priorities : 'priorities_for_spending',
+	others: 'others'
 };
 
 var dataConstants = {
@@ -50,6 +52,8 @@ export default class Chart extends React.Component {
 								return <SolarBar />
 							case viewConstants.priorities:
 								return <PrioritiesBar />
+							case viewConstants.others :
+								return <Others />
 							default:
 								return null
 						}

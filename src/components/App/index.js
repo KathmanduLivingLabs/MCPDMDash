@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from '../Map';
-import EthnicChart from '../EthnicChart';
+import EthinicChart from '../EthinicChart';
+import EthinicChartMaker from '../EthinicChartMaker';
 import NavBar from '../NavBar';
 import Chart from '../Chart';
 import Footer from '../Footer';
@@ -11,7 +12,8 @@ var viewConstants = {
 	survey: 'survey_completion',
 	needs: 'needs_fullfilled',
 	solar: 'solar_lamp_impact',
-	priorities : 'priorities_for_spending'
+	priorities : 'priorities_for_spending',
+	others: 'others'
 };
 
 export default class App extends React.Component {
@@ -21,7 +23,6 @@ export default class App extends React.Component {
 			activeView: viewConstants.survey,
 			selectedDistrict: null,
 			closeButton: true,
-			ethinicAggregate: false 
 		};
 	}
 
@@ -58,26 +59,14 @@ export default class App extends React.Component {
 					this.state.activeView === viewConstants.survey ?
 						<div className="map-and-echart">
 							<Map setSelectedDistrict={this.setSelectedDistrict.bind(this)} 
-									setCloseButton={this.setCloseButton.bind(this)}
-									setEthinicAggregate={this.setEthinicAggregate.bind(this)}/> 
+									setCloseButton={this.setCloseButton.bind(this)} />
 							{
 								(() => {
 									if(!this.state.closeButton) {
-										if(this.state.ethinicAggregate) {
 											return(
-												<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
-													selectedDistrict={this.state.selectedDistrict} 
-													ethinicAggregate={true}
-													setEthinicAggregate={this.setEthinicAggregate.bind(this)} />
+												<EthinicChartMaker setCloseButton={this.setCloseButton.bind(this)} 
+													selectedDistrict={this.state.selectedDistrict} />
 											);
-										} else {
-											return(
-												<EthnicChart setCloseButton={this.setCloseButton.bind(this)} 
-													selectedDistrict={this.state.selectedDistrict} 
-													ethinicAggregate={false}
-													setEthinicAggregate={this.setEthinicAggregate.bind(this)} />
-											);
-										}
 									} else return null;
 								})()
 							}

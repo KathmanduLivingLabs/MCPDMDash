@@ -1,0 +1,31 @@
+.hide {
+	display: none;
+}
+
+.prev-btn {
+	display: inline-block;
+	position: absolute;
+	background-color: #9e1b32;
+	color: white;
+	left: 45%;
+	border-right: 2px solid grey;
+	padding: 2px 12px 2px 5px;
+	cursor: pointer;
+	&:active {
+		background-color: #C26D7C;
+	}
+}
+
+.next-btn {
+	display: inline-block;
+	position: absolute;
+	background-color: #9e1b32;
+	color: white;
+	left: 54%;
+	padding: 2px 5px 2px 10px;
+	cursor: pointer;
+	&:active {
+		background-color: #C26D7C;
+	}
+}
+

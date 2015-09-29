@@ -4,13 +4,6 @@ var barData = require('../../data/realData.json');
 
 require('./style.scss');
 
-var viewConstants = {
-	survey: 'survey_completion',
-	needs: 'needs_fullfilled',
-	solar: 'solar_lamp_impact',
-	priorities : 'priorities_for_spending'
-};
-
 var dataConstants = {
 	needs_met: 'Did not Require Additional Urgent Items',
 	needs_unmet: 'Nedded Additional Urgent Items not Present in the Kit',

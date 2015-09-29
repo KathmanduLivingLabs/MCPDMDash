@@ -5,30 +5,12 @@ var barData = require('../../data/realData.json');
 
 require('./style.scss');
 
-var viewConstants = {
-	survey: 'survey_completion',
-	needs: 'needs_fullfilled',
-	solar: 'solar_lamp_impact',
-	priorities : 'priorities_for_spending'
-};
-
-var dataConstants = {
-	needs_met: 'needs_met',
-	needs_unmet: 'needs_unmet',
-	debt_taken: 'Debt Taken Due to Earthquake',
-	debt_not_taken: 'No Debt Due to Earthquake'
-};
-
 export default class SolarBar extends React.Component {
 	constructor() {
 		super();
-		this.chartNeedsData = [];
 		this.chartSolarData = [];
-		this.chartPrioritiesData = [];
 		this.state = {
-			chartNeedsData: [],
 			chartSolarData: [],
-			chartPrioritiesData: []
 		};
 	}
 
@@ -53,9 +35,16 @@ export default class SolarBar extends React.Component {
 			series: [data[0]]
 		};
 		this.chartSolarData[1] = {
-			labels: ['They feel more secure', 'It\'s easier for childern to study',
-							'They spend less money on charging'],
+			labels: ['Strongly Agree', 'Agree'],
 			series: [data[1]]
+		};
+		this.chartSolarData[2] = {
+			labels: ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'N/A'],
+			series: [data[2]]
+		};
+		this.chartSolarData[3] = {
+			labels: ['Strongly Agree', 'Agree', 'Neutral', 'Disagree'],
+			series: [data[3]]
 		};
 	}
 
@@ -90,9 +79,13 @@ export default class SolarBar extends React.Component {
 			reverseData: true,
 		};
 		var chartSolarFrequency = new Chartist.Bar('.frequency', this.chartSolarData[0], options);
-		var chartSolarUtility = new Chartist.Bar('.utility', this.chartSolarData[1], options);
+		var chartSolarUtility_secure = new Chartist.Bar('.utility_secure', this.chartSolarData[1], options);
+		var chartSolarUtility_children = new Chartist.Bar('.utility_children', this.chartSolarData[2], options);
+		var chartSolarUtility_money = new Chartist.Bar('.utility_money', this.chartSolarData[3], options);
 		this.makePercentCircles(chartSolarFrequency, 'x', 15, 3, true);
-		this.makePercentCircles(chartSolarUtility, 'x', 15, 3, true);
+		this.makePercentCircles(chartSolarUtility_secure, 'x', 15, 3, true);
+		this.makePercentCircles(chartSolarUtility_children, 'x', 15, 3, true);
+		this.makePercentCircles(chartSolarUtility_money, 'x', 15, 3, true);
 	}
 	
 	render() {
@@ -102,10 +95,20 @@ export default class SolarBar extends React.Component {
 				Number(barData.aggregate.frequency[2]) +
 				Number(barData.aggregate.frequency[3]) +
 				Number(barData.aggregate.frequency[4]);
-		var totalUtil = 
-				Number(barData.aggregate.utility[0]) +
-				Number(barData.aggregate.utility[1]) +
-				Number(barData.aggregate.utility[2]);
+		var totalUtil_secure = 
+				Number(barData.aggregate.utility_secure[0]) +
+				Number(barData.aggregate.utility_secure[1]);
+		var totalUtil_children = 
+				Number(barData.aggregate.utility_children[0]) +
+				Number(barData.aggregate.utility_children[1]) +
+				Number(barData.aggregate.utility_children[2]) +
+				Number(barData.aggregate.utility_children[3]) +
+				Number(barData.aggregate.utility_children[4]);
+		var totalUtil_money = 
+				Number(barData.aggregate.utility_money[0]) +
+				Number(barData.aggregate.utility_money[1]) +
+				Number(barData.aggregate.utility_money[2]) +
+				Number(barData.aggregate.utility_money[3]);
 
 		this.setChartData(
 			[[
@@ -115,9 +118,19 @@ export default class SolarBar extends React.Component {
 				Math.round((Number(barData.aggregate.frequency[3]) / totalFreq) * 100),
 				Math.round((Number(barData.aggregate.frequency[4]) / totalFreq) * 100),
 			], [
-				Math.round((Number(barData.aggregate.utility[0]) / totalUtil) * 100),
-				Math.round((Number(barData.aggregate.utility[1]) / totalUtil) * 100),
-				Math.round((Number(barData.aggregate.utility[2]) / totalUtil) * 100),
+				Math.round((Number(barData.aggregate.utility_secure[0]) / totalUtil_secure) * 100),
+				Math.round((Number(barData.aggregate.utility_secure[1]) / totalUtil_secure) * 100),
+			], [
+				Math.round((Number(barData.aggregate.utility_children[0]) / totalUtil_children) * 100),
+				Math.round((Number(barData.aggregate.utility_children[1]) / totalUtil_children) * 100),
+				Math.round((Number(barData.aggregate.utility_children[2]) / totalUtil_children) * 100),
+				Math.round((Number(barData.aggregate.utility_children[3]) / totalUtil_children) * 100),
+				Math.round((Number(barData.aggregate.utility_children[4]) / totalUtil_children) * 100),
+			], [
+				Math.round((Number(barData.aggregate.utility_money[0]) / totalUtil_money) * 100),
+				Math.round((Number(barData.aggregate.utility_money[1]) / totalUtil_money) * 100),
+				Math.round((Number(barData.aggregate.utility_money[2]) / totalUtil_money) * 100),
+				Math.round((Number(barData.aggregate.utility_money[3]) / totalUtil_money) * 100),
 			]]
 		);
 		return(
@@ -125,8 +138,20 @@ export default class SolarBar extends React.Component {
 				<div className="frequency">
 					<span className="chart-title-solar">How often do you use the solar lamp?</span>
 				</div>
-				<div className="utility">
-					<span className="chart-title-solar">Since using solar lamp</span>
+				<div className="utility utility_secure">
+					<span className="chart-title-solar">
+						Since using solar lamp: Solar Lamp Enchance Securty
+					</span>
+				</div>
+				<div className="utility utility_children">
+					<span className="chart-title-solar">
+						Since using solar lamp: Solar Lamp Helps Children Study
+					</span>
+				</div>
+				<div className="utility utility_money">
+					<span className="chart-title-solar">
+						Since using solar lamp: Solar Lamp Saves Money
+					</span>
 				</div>
 			</div>
 		);
