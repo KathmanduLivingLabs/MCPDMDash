@@ -125,7 +125,7 @@ export default class Others extends React.Component {
 					<span className="chart-title-spending">Percentage of Respondent Who Received Cash</span>
 				</div>
 				<div className="distance">
-					<span className="chart-title-debt">Distance That People Had To Travel</span>
+					<span className="chart-title-spending">Distance That People Had To Travel</span>
 				</div>
 			</div>
 		);
