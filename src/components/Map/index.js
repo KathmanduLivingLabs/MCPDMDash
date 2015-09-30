@@ -61,10 +61,10 @@ export default class Map extends React.Component {
 
 	getColor(percent) {
 		return percent === 100 ? '#ec7014' :
-			percent > 75 ? '#2A85B3' :
+			percent > 55 ? '#2A85B3' :
 			percent > 50 ? '#88C0EB' :
-			percent > 25 ? '#C7E7FF' :
-			percent > 0 ? '#E3F3FF' :
+			percent > 45 ? '#C7E7FF' :
+			percent > 40 ? '#E3F3FF' :
 										'#ffffff';
 	}
 
