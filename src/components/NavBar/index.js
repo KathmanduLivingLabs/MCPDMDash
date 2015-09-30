@@ -6,7 +6,8 @@ var viewConstants = {
 	survey: 'survey_completion',
 	needs: 'needs_fullfilled',
 	solar: 'solar_lamp_impact',
-	priorities : 'priorities_for_spending'
+	priorities : 'priorities_for_spending',
+	others: 'others'
 };
 
 export default class NavBar extends React.Component {
@@ -43,6 +44,10 @@ export default class NavBar extends React.Component {
 					<a className="nav-button" href="#"
 						onClick={this.setActiveView.bind(this, viewConstants.priorities)}>
 						<span>Priorities for Spending</span>
+					</a>
+					<a className="nav-button" href="#"
+						onClick={this.setActiveView.bind(this, viewConstants.others)}>
+						<span>Others</span>
 					</a>
 				</span>
 			</div>

@@ -82,10 +82,6 @@ export default class Map extends React.Component {
 		return(
 			<div className="map-container">
 				<div id="map">
-					<div className="aggregate-ethinic-btn" 
-						onClick={() => {this.props.setEthinicAggregate(true); this.props.setCloseButton(false)}}>
-						Aggregate Ethnic Distibution
-					</div>
 				</div>
 			</div>
 		);

@@ -1,0 +1,41 @@
+.chart-title-solar {
+	font-size: 1.4em;
+	margin-left: -150px;
+}
+
+.solar-impact {
+	margin-left: 5%;
+}
+
+.frequency {
+	position: relative;
+	width: 520px;
+	height: 250px;
+	margin-left: 20%;
+	margin-righ: 20px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 30px;
+	}
+	.ct-label.ct-vertical.ct-start {
+		width: 80px !important;
+		padding-top: 5px !important;
+	}
+}
+
+.utility {
+	position: relative;
+	width: 500px;
+	height: 220px;
+	margin-left: 20%;
+	margin-top: 80px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 30px;
+	}
+	.ct-label.ct-vertical.ct-start {
+		width: 80px !important;
+		padding-top: 5px !important;
+	}
+}
+

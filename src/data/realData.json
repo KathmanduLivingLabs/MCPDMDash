@@ -9,6 +9,19 @@
         "Madhesi": 1,
         "Other": 0
       },
+			"male": {
+				"Aged 0-5": 35,
+				"Aged 6-11": 27,
+				"Aged 12-24": 71,
+				"Aged Above 25": 150
+			},
+			"female": {
+				"Aged 0-5": 29,
+				"Aged 6-11": 26,
+				"Aged 12-24": 91,
+				"Aged Above 25": 152
+			},
+			"Average Members in Household": 5,
       "Household Without Disablity": 96,
       "Household With Disablity": 25,
       "No Debt Due to Earthquake": 94,
@@ -24,14 +37,14 @@
       "Solar Lamp Enchance Securty: Agree": 0,
       "Solar Lamp Helps Children Study: Strongly Agree": 0,
       "Solar Lamp Helps Children Study: Agree": 0,
-      "Solar Lamp Helps Children Study: Neutral": 5,
-      "Solar Lamp Helps Children Study: Disagree": 3,
-      "Solar Lamp Helps Children Study: No Children": 6,
-      "Solar Lamp Helps Children Study: Children Not in School ": 14,
+      "Solar Lamp Helps Children Study: Neutral": 0,
+      "Solar Lamp Helps Children Study: Disagree": 0,
+      "Solar Lamp Helps Children Study: No Children": 0,
+      "Solar Lamp Helps Children Study: Children Not in School ": 0,
       "Solar Lamp Saves Money: Strongly Agree": 0,
       "Solar Lamp Saves Money: Agree": 0,
-      "Solar Lamp Saves Money: Neutral": 4,
-      "Solar Lamp Saves Money: Disagree": 3,
+      "Solar Lamp Saves Money: Neutral": 0,
+      "Solar Lamp Saves Money: Disagree": 0,
       "Did not Require Additional Urgent Items": 67,
       "Nedded Additional Urgent Items not Present in the Kit": 54,
       "FoodSpending": 0,
@@ -55,6 +68,19 @@
         "Madhesi": 0,
         "Other": 3
       },
+			"male": {
+				"Aged 0-5": 21,
+				"Aged 6-11": 24,
+				"Aged 12-24": 47,
+				"Aged Above 25":91 
+			},
+			"female": {
+				"Aged 0-5": 21,
+				"Aged 6-11": 29,
+				"Aged 12-24": 40,
+				"Aged Above 25": 98 
+			},
+			"Average Members in Household": 4,
       "Household Without Disablity": 46,
       "Household With Disablity": 38,
       "No Debt Due to Earthquake": 36,
@@ -69,12 +95,12 @@
       "Solar Lamp Enchance Securty: Agree": 0,
       "Solar Lamp Helps Children Study: Strongly Agree": 0,
       "Solar Lamp Helps Children Study: Agree": 0,
-      "Solar Lamp Helps Children Study: Disagree": 2,
-      "Solar Lamp Helps Children Study: No Children": 5,
-      "Solar Lamp Helps Children Study: Children Not in School ": 14,
+      "Solar Lamp Helps Children Study: Disagree": 0,
+      "Solar Lamp Helps Children Study: No Children": 0,
+      "Solar Lamp Helps Children Study: Children Not in School ": 0,
       "Solar Lamp Saves Money: Strongly Agree": 0,
       "Solar Lamp Saves Money: Agree": 0,
-      "Solar Lamp Saves Money: Disagree": 23,
+      "Solar Lamp Saves Money: Disagree": 0,
       "Did not Require Additional Urgent Items": 79,
       "Nedded Additional Urgent Items not Present in the Kit": 5,
       "FoodSpending": 0,
@@ -98,6 +124,19 @@
         "Madhesi": 0,
         "Other": 0
       },
+			"male": {
+				"Aged 0-5": 28,
+				"Aged 6-11": 33,
+				"Aged 12-24": 76,
+				"Aged Above 25": 139 
+			},
+			"female": {
+				"Aged 0-5": 19,
+				"Aged 6-11": 24,
+				"Aged 12-24": 82,
+				"Aged Above 25": 121 
+			},
+			"Average Members in Household": 6,
       "Household Without Disablity": 56,
       "Household With Disablity": 35,
       "No Debt Due to Earthquake": 71,
@@ -114,13 +153,13 @@
       "Solar Lamp Enchance Securty: Disagree": 1,
       "Solar Lamp Helps Children Study: Strongly Agree": 0,
       "Solar Lamp Helps Children Study: Agree": 0,
-      "Solar Lamp Helps Children Study: Neutral": 29,
-      "Solar Lamp Helps Children Study: No Children": 1,
-      "Solar Lamp Helps Children Study: Children Not in School ": 2,
+      "Solar Lamp Helps Children Study: Neutral": 0,
+      "Solar Lamp Helps Children Study: No Children": 0,
+      "Solar Lamp Helps Children Study: Children Not in School ": 0,
       "Solar Lamp Saves Money: Strongly Agree": 0,
       "Solar Lamp Saves Money: Agree": 0,
-      "Solar Lamp Saves Money: Neutral": 1,
-      "Solar Lamp Saves Money: Disagree": 1,
+      "Solar Lamp Saves Money: Neutral": 0,
+      "Solar Lamp Saves Money: Disagree": 0,
       "Solar Lamp Saves money: Strongly Disagree": 1,
       "Did not Require Additional Urgent Items": 86,
       "Nedded Additional Urgent Items not Present in the Kit": 5,
@@ -145,6 +184,19 @@
         "Madhesi": 0,
         "Other": 0
       },
+			"male": {
+				"Aged 0-5": 20,
+				"Aged 6-11": 35,
+				"Aged 12-24": 94,
+				"Aged Above 25": 164 
+			},
+			"female": {
+				"Aged 0-5": 33,
+				"Aged 6-11": 35,
+				"Aged 12-24": 90,
+				"Aged Above 25": 160
+			},
+			"Average Members in Household": 6,
       "Household Without Disablity": 73,
       "Household With Disablity": 34,
       "No Debt Due to Earthquake": 68,
@@ -161,12 +213,12 @@
       "Solar Lamp Enchance Securty: Neutral": 2,
       "Solar Lamp Helps Children Study: Strongly Agree": 0,
       "Solar Lamp Helps Children Study: Agree": 0,
-      "Solar Lamp Helps Children Study: Neutral": 1,
-      "Solar Lamp Helps Children Study: No Children": 11,
-      "Solar Lamp Helps Children Study: Children Not in School ": 7,
+      "Solar Lamp Helps Children Study: Neutral": 0,
+      "Solar Lamp Helps Children Study: No Children": 0,
+      "Solar Lamp Helps Children Study: Children Not in School ": 0,
       "Solar Lamp Saves Money: Strongly Agree": 0,
       "Solar Lamp Saves Money: Agree": 0,
-      "Solar Lamp Saves Money: Neutral": 10,
+      "Solar Lamp Saves Money: Neutral": 0,
       "Did not Require Additional Urgent Items": 100,
       "Nedded Additional Urgent Items not Present in the Kit": 7,
       "FoodSpending": 0,
@@ -190,10 +242,22 @@
       5,
       4
     ],
-    "utility": [
-      388,
-      294,
-      351
+    "utility_secure": [
+      291,
+      97
+    ],
+    "utility_children": [
+      194,
+      100,
+      35,
+      5,
+      60
+    ],
+    "utility_money": [
+      225,
+      126,
+      15,
+      27
     ],
     "area_of_spending": [
       573300,
@@ -208,6 +272,20 @@
       38,
       1,
       3
-    ]
+    ],
+		"cash": [
+			11,
+			394,
+			2,
+			401
+		],
+		"distance": [
+			220,
+			126,
+			35,
+			7,
+			14,
+			1
+		]
   }
 }
