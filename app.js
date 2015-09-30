@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5a1aa294760a58f10cd9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4fd0cda38a7d50b5cb35"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9386,7 +9386,7 @@
 
 	var App = __webpack_require__(228);
 
-	__webpack_require__(268);
+	__webpack_require__(274);
 
 	_react2['default'].initializeTouchEvents(true);
 
@@ -30212,29 +30212,34 @@
 
 	var _Map2 = _interopRequireDefault(_Map);
 
-	var _EthnicChart = __webpack_require__(230);
+	var _EthinicChart = __webpack_require__(230);
 
-	var _EthnicChart2 = _interopRequireDefault(_EthnicChart);
+	var _EthinicChart2 = _interopRequireDefault(_EthinicChart);
 
-	var _NavBar = __webpack_require__(244);
+	var _EthinicChartMaker = __webpack_require__(244);
+
+	var _EthinicChartMaker2 = _interopRequireDefault(_EthinicChartMaker);
+
+	var _NavBar = __webpack_require__(247);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
-	var _Chart = __webpack_require__(248);
+	var _Chart = __webpack_require__(251);
 
 	var _Chart2 = _interopRequireDefault(_Chart);
 
-	var _Footer = __webpack_require__(263);
+	var _Footer = __webpack_require__(269);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	__webpack_require__(266);
+	__webpack_require__(272);
 
 	var viewConstants = {
 		survey: 'survey_completion',
 		needs: 'needs_fullfilled',
 		solar: 'solar_lamp_impact',
-		priorities: 'priorities_for_spending'
+		priorities: 'priorities_for_spending',
+		others: 'others'
 	};
 
 	var App = (function (_React$Component) {
@@ -30247,8 +30252,7 @@
 			this.state = {
 				activeView: viewConstants.survey,
 				selectedDistrict: null,
-				closeButton: true,
-				ethinicAggregate: false
+				closeButton: true
 			};
 		}
 
@@ -30296,21 +30300,11 @@
 							'div',
 							{ className: 'map-and-echart' },
 							_react2['default'].createElement(_Map2['default'], { setSelectedDistrict: this.setSelectedDistrict.bind(this),
-								setCloseButton: this.setCloseButton.bind(this),
-								setEthinicAggregate: this.setEthinicAggregate.bind(this) }),
+								setCloseButton: this.setCloseButton.bind(this) }),
 							(function () {
 								if (!_this.state.closeButton) {
-									if (_this.state.ethinicAggregate) {
-										return _react2['default'].createElement(_EthnicChart2['default'], { setCloseButton: _this.setCloseButton.bind(_this),
-											selectedDistrict: _this.state.selectedDistrict,
-											ethinicAggregate: true,
-											setEthinicAggregate: _this.setEthinicAggregate.bind(_this) });
-									} else {
-										return _react2['default'].createElement(_EthnicChart2['default'], { setCloseButton: _this.setCloseButton.bind(_this),
-											selectedDistrict: _this.state.selectedDistrict,
-											ethinicAggregate: false,
-											setEthinicAggregate: _this.setEthinicAggregate.bind(_this) });
-									}
+									return _react2['default'].createElement(_EthinicChartMaker2['default'], { setCloseButton: _this.setCloseButton.bind(_this),
+										selectedDistrict: _this.state.selectedDistrict });
 								} else return null;
 							})()
 						) : _react2['default'].createElement(
@@ -30359,9 +30353,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _EthnicChart = __webpack_require__(230);
+	var _EthinicChart = __webpack_require__(230);
 
-	var _EthnicChart2 = _interopRequireDefault(_EthnicChart);
+	var _EthinicChart2 = _interopRequireDefault(_EthinicChart);
 
 	var districtsJson = __webpack_require__(241);
 
@@ -30436,7 +30430,7 @@
 		}, {
 			key: 'getColor',
 			value: function getColor(percent) {
-				return percent === 100 ? '#ec7014' : percent > 75 ? '#2A85B3' : percent > 50 ? '#88C0EB' : percent > 25 ? '#C7E7FF' : percent > 0 ? '#E3F3FF' : '#ffffff';
+				return percent === 100 ? '#ec7014' : percent > 55 ? '#2A85B3' : percent > 50 ? '#88C0EB' : percent > 45 ? '#C7E7FF' : percent > 40 ? '#E3F3FF' : '#ffffff';
 			}
 		}, {
 			key: 'styleMe',
@@ -30452,23 +30446,10 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				var _this = this;
-
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'map-container' },
-					_react2['default'].createElement(
-						'div',
-						{ id: 'map' },
-						_react2['default'].createElement(
-							'div',
-							{ className: 'aggregate-ethinic-btn',
-								onClick: function () {
-									_this.props.setEthinicAggregate(true);_this.props.setCloseButton(false);
-								} },
-							'Aggregate Ethnic Distibution'
-						)
-					)
+					_react2['default'].createElement('div', { id: 'map' })
 				);
 			}
 		}]);
@@ -30512,173 +30493,105 @@
 
 	__webpack_require__(232);
 
-	var ETHNIC_GROUPS = ['Adibasi Janjati', 'Brahmin', 'Chhetri', 'Dalit', 'Madhesi', 'Other'];
+	var EthinicChart = (function (_React$Component) {
+		_inherits(EthinicChart, _React$Component);
 
-	var EthnicChart = (function (_React$Component) {
-		_inherits(EthnicChart, _React$Component);
+		function EthinicChart() {
+			_classCallCheck(this, EthinicChart);
 
-		function EthnicChart() {
-			_classCallCheck(this, EthnicChart);
-
-			_get(Object.getPrototypeOf(EthnicChart.prototype), 'constructor', this).call(this);
+			_get(Object.getPrototypeOf(EthinicChart.prototype), 'constructor', this).call(this);
 			this.chartData = [];
+			this.state = {
+				ageOrEthinicity: true
+			};
 		}
 
-		_createClass(EthnicChart, [{
-			key: 'closeChart',
-			value: function closeChart(e) {
-				this.props.setCloseButton(true);
-				this.props.setEthinicAggregate(false);
+		_createClass(EthinicChart, [{
+			key: 'setAgeOrEthinicity',
+			value: function setAgeOrEthinicity(status) {
+				this.setState({
+					ageOrEthinicity: status
+				});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				var _this = this;
-
-				var title = '';
-				if (this.props.ethinicAggregate) title = 'Aggregate Ethinic Distribution of All Districts';else title = 'Ethinic Distribution of ' + this.props.selectedDistrict.feature.properties.NAME;
-
+				console.log('hello');
 				var district = 0;
-				if (!this.props.ethinicAggregate) {
-					switch (this.props.selectedDistrict.feature.properties.NAME) {
-						case 'Sindhupalchok':
-							district = 0;
-							break;
-						case 'Dolakha':
-							district = 1;
-							break;
-						case 'Nuwakot':
-							district = 2;
-							break;
-						case 'Kavrepalanchok':
-							district = 3;
-							break;
-					}
+				switch (this.props.selectedDistrict.feature.properties.NAME) {
+					case 'Sindhupalchok':
+						district = 0;
+						break;
+					case 'Dolakha':
+						district = 1;
+						break;
+					case 'Nuwakot':
+						district = 2;
+						break;
+					case 'Kavrepalanchok':
+						district = 3;
+						break;
 				}
 
-				function cleanData(data) {
-					var raw = data.split('_');
-					var output = '';
-					raw.forEach(function (item) {
-						item = item[0].toUpperCase() + item.slice(1);
-						if (raw.length > 1) {
-							output += item + ' ';
-						} else {
-							output = item;
-						}
-					});
-					return output.trim();
-				}
-				var ethinicity = barData.district_wise[district].ethinicity;
-				var total = 0;
-				Object.keys(ethinicity).forEach(function (item) {
-					total += ethinicity[item];
-				});
+				var title = this.props.title + ' ' + this.props.selectedDistrict.feature.properties.NAME;
+				var chartType = barData.district_wise[district][this.props.chartType];
+				console.log(this.props.chartType);
 				return _react2['default'].createElement(
 					'div',
-					{ id: 'ethnic_chart', className: 'ethnic-chart' },
-					_react2['default'].createElement(
-						'a',
-						{ className: 'close-button', onClick: this.closeChart.bind(this) },
-						'×'
-					),
+					{ className: 'actual-chart' },
 					_react2['default'].createElement(
 						'div',
-						{ className: 'ethnic-chart-bar' },
-						_react2['default'].createElement(
-							'div',
-							{ className: 'actual-chart' },
-							_react2['default'].createElement(
-								'div',
-								{ className: 'chart-title' },
-								title
-							),
-							(function () {
-								var dom;
-								if (_this.props.ethinicAggregate) {
-									var total = 0;
-									barData.aggregate.ethinicity.map(function (item, index) {
-										total += item;
-									});
-									dom = barData.aggregate.ethinicity.map(function (item, index) {
-										var percent = item / total * 100;
-										percent = Math.round(percent * 100) / 100;
-										var displayPercent = percent;
-										percent = percent < 5 ? percent === 0 ? 0 : 5 : percent;
-										var barStyle = {
-											width: percent + '%'
-										};
-										return _react2['default'].createElement(
-											'div',
-											{ className: 'bars-and-label' },
-											_react2['default'].createElement(
-												'div',
-												{ className: 'label' },
-												ETHNIC_GROUPS[index]
-											),
-											_react2['default'].createElement(
-												'div',
-												{ className: 'bar-unit' },
-												'(',
-												displayPercent,
-												'%)'
-											),
-											_react2['default'].createElement(
-												'div',
-												{ className: 'bars' },
-												_react2['default'].createElement('div', { className: 'progress', style: barStyle })
-											)
-										);
-									});
-								} else {
-									var total = 0;
+						{ className: 'chart-title' },
+						title
+					),
+					(function () {
+						var dom;
+						var total = 0;
 
-									Object.keys(ethinicity).map(function (item, index) {
-										total += ethinicity[item];
-									});
-									dom = Object.keys(ethinicity).map(function (item, index) {
-										var percent = ethinicity[item] / total * 100;
-										percent = Math.round(percent * 100) / 100;
-										var displayPercent = percent;
-										percent = percent < 5 ? percent === 0 ? 0 : 5 : percent;
-										var barStyle = {
-											width: percent + '%'
-										};
-										return _react2['default'].createElement(
-											'div',
-											{ className: 'bars-and-label' },
-											_react2['default'].createElement(
-												'div',
-												{ className: 'label' },
-												cleanData(item)
-											),
-											_react2['default'].createElement(
-												'div',
-												{ className: 'bar-unit' },
-												'(',
-												displayPercent,
-												'%)'
-											),
-											_react2['default'].createElement(
-												'div',
-												{ className: 'bars' },
-												_react2['default'].createElement('div', { className: 'progress', style: barStyle })
-											)
-										);
-									});
-								}
-								return dom;
-							})()
-						)
-					)
+						Object.keys(chartType).map(function (item, index) {
+							total += chartType[item];
+						});
+						dom = Object.keys(chartType).map(function (item, index) {
+							var percent = chartType[item] / total * 100;
+							percent = Math.round(percent * 100) / 100;
+							var displayPercent = percent;
+							percent = percent < 5 ? percent === 0 ? 0 : 5 : percent;
+							var barStyle = {
+								width: percent + '%'
+							};
+							return _react2['default'].createElement(
+								'div',
+								{ className: 'bars-and-label' },
+								_react2['default'].createElement(
+									'div',
+									{ className: 'label' },
+									item
+								),
+								_react2['default'].createElement(
+									'div',
+									{ className: 'bar-unit' },
+									'(',
+									displayPercent,
+									'%)'
+								),
+								_react2['default'].createElement(
+									'div',
+									{ className: 'bars' },
+									_react2['default'].createElement('div', { className: 'progress', style: barStyle })
+								)
+							);
+						});
+
+						return { dom: dom };
+					})()
 				);
 			}
 		}]);
 
-		return EthnicChart;
+		return EthinicChart;
 	})(_react2['default'].Component);
 
-	exports['default'] = EthnicChart;
+	exports['default'] = EthinicChart;
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -30699,6 +30612,19 @@
 					"Madhesi": 1,
 					"Other": 0
 				},
+				"male": {
+					"Aged 0-5": 35,
+					"Aged 6-11": 27,
+					"Aged 12-24": 71,
+					"Aged Above 25": 150
+				},
+				"female": {
+					"Aged 0-5": 29,
+					"Aged 6-11": 26,
+					"Aged 12-24": 91,
+					"Aged Above 25": 152
+				},
+				"Average Members in Household": 5,
 				"Household Without Disablity": 96,
 				"Household With Disablity": 25,
 				"No Debt Due to Earthquake": 94,
@@ -30714,14 +30640,14 @@
 				"Solar Lamp Enchance Securty: Agree": 0,
 				"Solar Lamp Helps Children Study: Strongly Agree": 0,
 				"Solar Lamp Helps Children Study: Agree": 0,
-				"Solar Lamp Helps Children Study: Neutral": 5,
-				"Solar Lamp Helps Children Study: Disagree": 3,
-				"Solar Lamp Helps Children Study: No Children": 6,
-				"Solar Lamp Helps Children Study: Children Not in School ": 14,
+				"Solar Lamp Helps Children Study: Neutral": 0,
+				"Solar Lamp Helps Children Study: Disagree": 0,
+				"Solar Lamp Helps Children Study: No Children": 0,
+				"Solar Lamp Helps Children Study: Children Not in School ": 0,
 				"Solar Lamp Saves Money: Strongly Agree": 0,
 				"Solar Lamp Saves Money: Agree": 0,
-				"Solar Lamp Saves Money: Neutral": 4,
-				"Solar Lamp Saves Money: Disagree": 3,
+				"Solar Lamp Saves Money: Neutral": 0,
+				"Solar Lamp Saves Money: Disagree": 0,
 				"Did not Require Additional Urgent Items": 67,
 				"Nedded Additional Urgent Items not Present in the Kit": 54,
 				"FoodSpending": 0,
@@ -30745,6 +30671,19 @@
 					"Madhesi": 0,
 					"Other": 3
 				},
+				"male": {
+					"Aged 0-5": 21,
+					"Aged 6-11": 24,
+					"Aged 12-24": 47,
+					"Aged Above 25": 91
+				},
+				"female": {
+					"Aged 0-5": 21,
+					"Aged 6-11": 29,
+					"Aged 12-24": 40,
+					"Aged Above 25": 98
+				},
+				"Average Members in Household": 4,
 				"Household Without Disablity": 46,
 				"Household With Disablity": 38,
 				"No Debt Due to Earthquake": 36,
@@ -30759,12 +30698,12 @@
 				"Solar Lamp Enchance Securty: Agree": 0,
 				"Solar Lamp Helps Children Study: Strongly Agree": 0,
 				"Solar Lamp Helps Children Study: Agree": 0,
-				"Solar Lamp Helps Children Study: Disagree": 2,
-				"Solar Lamp Helps Children Study: No Children": 5,
-				"Solar Lamp Helps Children Study: Children Not in School ": 14,
+				"Solar Lamp Helps Children Study: Disagree": 0,
+				"Solar Lamp Helps Children Study: No Children": 0,
+				"Solar Lamp Helps Children Study: Children Not in School ": 0,
 				"Solar Lamp Saves Money: Strongly Agree": 0,
 				"Solar Lamp Saves Money: Agree": 0,
-				"Solar Lamp Saves Money: Disagree": 23,
+				"Solar Lamp Saves Money: Disagree": 0,
 				"Did not Require Additional Urgent Items": 79,
 				"Nedded Additional Urgent Items not Present in the Kit": 5,
 				"FoodSpending": 0,
@@ -30788,6 +30727,19 @@
 					"Madhesi": 0,
 					"Other": 0
 				},
+				"male": {
+					"Aged 0-5": 28,
+					"Aged 6-11": 33,
+					"Aged 12-24": 76,
+					"Aged Above 25": 139
+				},
+				"female": {
+					"Aged 0-5": 19,
+					"Aged 6-11": 24,
+					"Aged 12-24": 82,
+					"Aged Above 25": 121
+				},
+				"Average Members in Household": 6,
 				"Household Without Disablity": 56,
 				"Household With Disablity": 35,
 				"No Debt Due to Earthquake": 71,
@@ -30804,13 +30756,13 @@
 				"Solar Lamp Enchance Securty: Disagree": 1,
 				"Solar Lamp Helps Children Study: Strongly Agree": 0,
 				"Solar Lamp Helps Children Study: Agree": 0,
-				"Solar Lamp Helps Children Study: Neutral": 29,
-				"Solar Lamp Helps Children Study: No Children": 1,
-				"Solar Lamp Helps Children Study: Children Not in School ": 2,
+				"Solar Lamp Helps Children Study: Neutral": 0,
+				"Solar Lamp Helps Children Study: No Children": 0,
+				"Solar Lamp Helps Children Study: Children Not in School ": 0,
 				"Solar Lamp Saves Money: Strongly Agree": 0,
 				"Solar Lamp Saves Money: Agree": 0,
-				"Solar Lamp Saves Money: Neutral": 1,
-				"Solar Lamp Saves Money: Disagree": 1,
+				"Solar Lamp Saves Money: Neutral": 0,
+				"Solar Lamp Saves Money: Disagree": 0,
 				"Solar Lamp Saves money: Strongly Disagree": 1,
 				"Did not Require Additional Urgent Items": 86,
 				"Nedded Additional Urgent Items not Present in the Kit": 5,
@@ -30835,6 +30787,19 @@
 					"Madhesi": 0,
 					"Other": 0
 				},
+				"male": {
+					"Aged 0-5": 20,
+					"Aged 6-11": 35,
+					"Aged 12-24": 94,
+					"Aged Above 25": 164
+				},
+				"female": {
+					"Aged 0-5": 33,
+					"Aged 6-11": 35,
+					"Aged 12-24": 90,
+					"Aged Above 25": 160
+				},
+				"Average Members in Household": 6,
 				"Household Without Disablity": 73,
 				"Household With Disablity": 34,
 				"No Debt Due to Earthquake": 68,
@@ -30851,12 +30816,12 @@
 				"Solar Lamp Enchance Securty: Neutral": 2,
 				"Solar Lamp Helps Children Study: Strongly Agree": 0,
 				"Solar Lamp Helps Children Study: Agree": 0,
-				"Solar Lamp Helps Children Study: Neutral": 1,
-				"Solar Lamp Helps Children Study: No Children": 11,
-				"Solar Lamp Helps Children Study: Children Not in School ": 7,
+				"Solar Lamp Helps Children Study: Neutral": 0,
+				"Solar Lamp Helps Children Study: No Children": 0,
+				"Solar Lamp Helps Children Study: Children Not in School ": 0,
 				"Solar Lamp Saves Money: Strongly Agree": 0,
 				"Solar Lamp Saves Money: Agree": 0,
-				"Solar Lamp Saves Money: Neutral": 10,
+				"Solar Lamp Saves Money: Neutral": 0,
 				"Did not Require Additional Urgent Items": 100,
 				"Nedded Additional Urgent Items not Present in the Kit": 7,
 				"FoodSpending": 0,
@@ -30880,10 +30845,22 @@
 				5,
 				4
 			],
-			"utility": [
-				388,
-				294,
-				351
+			"utility_secure": [
+				291,
+				97
+			],
+			"utility_children": [
+				194,
+				100,
+				35,
+				5,
+				60
+			],
+			"utility_money": [
+				225,
+				126,
+				15,
+				27
 			],
 			"area_of_spending": [
 				573300,
@@ -30898,6 +30875,29 @@
 				38,
 				1,
 				3
+			],
+			"cash": [
+				11,
+				394,
+				2,
+				401
+			],
+			"distance": [
+				220,
+				126,
+				35,
+				7,
+				14,
+				1
+			],
+			"assistance": [
+				54,
+				83,
+				81,
+				17,
+				82,
+				40,
+				1
 			]
 		}
 	};
@@ -30934,7 +30934,7 @@
 
 
 	// module
-	exports.push([module.id, ".ethnic-chart {\n  position: absolute;\n  background-color: white;\n  outline: #cccccc thin solid;\n  width: 550px;\n  height: 470px;\n  top: 20%;\n  left: 50%;\n  margin-left: -275px; }\n\n.close-button {\n  position: absolute;\n  right: 4px;\n  top: 4px;\n  padding: 2px 10px;\n  z-index: 20;\n  outline: #cccccc thin solid;\n  cursor: pointer; }\n  .close-button:hover {\n    background-color: rgba(255, 255, 255, 0.99); }\n\n.actual-chart {\n  width: 87%;\n  height: 85%;\n  margin: auto;\n  margin-top: 30px;\n  overflow: hidden; }\n\n.bars-and-label {\n  height: 58px; }\n\n.bars {\n  background: url(" + __webpack_require__(235) + ");\n  background-size: contain;\n  height: 24px;\n  width: 100%;\n  margin-left: 25px; }\n\n.label {\n  display: inline-block;\n  font-size: 0.9em;\n  padding-right: 10px;\n  border-bottom: 1px solid lightgray;\n  margin-bottom: 6px; }\n\n.bar-unit {\n  display: inline-block;\n  font-size: 0.9em;\n  border-bottom: 1px solid lightgrey; }\n\n.progress {\n  background: url(" + __webpack_require__(236) + ");\n  background-size: contain;\n  height: 24px; }\n\n.chart-title {\n  font-size: 1.4em;\n  font-weight: bold;\n  margin-bottom: 20px; }\n", ""]);
+	exports.push([module.id, ".type-chart {\n  position: absolute;\n  background-color: white;\n  outline: #cccccc thin solid;\n  width: 550px;\n  height: 470px;\n  top: 20%;\n  left: 50%;\n  margin-left: -275px; }\n\n.close-button {\n  position: absolute;\n  right: 4px;\n  top: 4px;\n  padding: 2px 10px;\n  z-index: 20;\n  outline: #cccccc thin solid;\n  cursor: pointer; }\n  .close-button:hover {\n    background-color: rgba(255, 255, 255, 0.99); }\n\n.actual-chart {\n  width: 87%;\n  height: 85%;\n  margin: auto;\n  margin-top: 30px;\n  overflow: hidden; }\n\n.bars-and-label {\n  height: 58px; }\n\n.bars {\n  background: url(" + __webpack_require__(235) + ");\n  background-size: contain;\n  height: 24px;\n  width: 100%;\n  margin-left: 25px; }\n\n.label {\n  display: inline-block;\n  font-size: 0.9em;\n  padding-right: 10px;\n  border-bottom: 1px solid lightgray;\n  margin-bottom: 6px; }\n\n.bar-unit {\n  display: inline-block;\n  font-size: 0.9em;\n  border-bottom: 1px solid lightgrey; }\n\n.progress {\n  background: url(" + __webpack_require__(236) + ");\n  background-size: contain;\n  height: 24px; }\n\n.chart-title {\n  font-size: 1.4em;\n  font-weight: bold;\n  margin-bottom: 20px; }\n", ""]);
 
 	// exports
 
@@ -31346,7 +31346,7 @@
 			{
 				"type": "Feature",
 				"properties": {
-					"PERCENT": 30,
+					"PERCENT": 60,
 					"ID_0": 157,
 					"ISO": "NPL",
 					"NAME_0": "Nepal",
@@ -33000,7 +33000,7 @@
 			{
 				"type": "Feature",
 				"properties": {
-					"PERCENT": 10,
+					"PERCENT": 54,
 					"ID_0": 157,
 					"ISO": "NPL",
 					"NAME_0": "Nepal",
@@ -34634,6 +34634,7 @@
 			{
 				"type": "Feature",
 				"properties": {
+					"PERCENT": 42,
 					"ID_0": 157,
 					"ISO": "NPL",
 					"NAME_0": "Nepal",
@@ -36627,7 +36628,7 @@
 			{
 				"type": "Feature",
 				"properties": {
-					"PERCENT": 85,
+					"PERCENT": 46,
 					"ID_0": 157,
 					"ISO": "NPL",
 					"NAME_0": "Nepal",
@@ -38070,19 +38071,194 @@
 
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(126);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _EthinicChart = __webpack_require__(230);
+
+	var _EthinicChart2 = _interopRequireDefault(_EthinicChart);
+
+	__webpack_require__(245);
+
+	var chartTypes = [{ chartType: 'ethinicity', title: 'Ethininic Distribution of ' }, { chartType: 'male', title: 'Male Population Distribution of ' }, { chartType: 'female', title: 'Female Population Distribution of ' }];
+
+	var EthinicChartMaker = (function (_React$Component) {
+		_inherits(EthinicChartMaker, _React$Component);
+
+		function EthinicChartMaker() {
+			_classCallCheck(this, EthinicChartMaker);
+
+			_get(Object.getPrototypeOf(EthinicChartMaker.prototype), 'constructor', this).call(this);
+			this.page = 0;
+		}
+
+		_createClass(EthinicChartMaker, [{
+			key: 'closeChart',
+			value: function closeChart(e) {
+				this.props.setCloseButton(true);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var allCharts = document.getElementsByClassName('actual-chart');
+				for (var i = 1; i < chartTypes.length; i++) {
+					allCharts[i].className = 'actual-chart hide';
+				}
+			}
+		}, {
+			key: 'showClass',
+			value: function showClass(nextClassNumber, currClassNumber) {
+				console.log(nextClassNumber);
+				console.log(currClassNumber);
+				var allCharts = document.getElementsByClassName('actual-chart');
+				allCharts[nextClassNumber].className = 'actual-chart';
+				allCharts[currClassNumber].className = 'actual-chart hide';
+			}
+		}, {
+			key: 'prevClick',
+			value: function prevClick() {
+				var allCharts = document.getElementsByClassName('actual-chart');
+				var i = 0;
+				var currClassNumber = 0;
+				for (i = 0; i < allCharts.length; i++) {
+					if (allCharts[i].className.indexOf('hide') === -1) {
+						currClassNumber = i;
+						break;
+					}
+				}
+				this.showClass(Math.abs(i - 1) % 3, i % 3);
+			}
+		}, {
+			key: 'nextClick',
+			value: function nextClick() {
+				var allCharts = document.getElementsByClassName('actual-chart');
+				var i = 0;
+				var currClassNumber = 0;
+				for (i = 0; i < allCharts.length; i++) {
+					if (allCharts[i].className.indexOf('hide') === -1) {
+						currClassNumber = i;
+						break;
+					}
+				}
+				this.showClass((i + 1) % 3, i % 3);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this = this;
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'type-chart' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'type-chart-bar' },
+						_react2['default'].createElement(
+							'a',
+							{ className: 'close-button', onClick: this.closeChart.bind(this) },
+							'×'
+						),
+						chartTypes.map(function (item, index) {
+							return _react2['default'].createElement(_EthinicChart2['default'], { chartType: chartTypes[index].chartType, title: item.title,
+								selectedDistrict: _this.props.selectedDistrict, ref: 'chart' + index });
+						})
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'prev-btn', onClick: this.prevClick.bind(this) },
+						'prev'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'next-btn', onClick: this.nextClick.bind(this) },
+						'next'
+					)
+				);
+			}
+		}]);
+
+		return EthinicChartMaker;
+	})(_react2['default'].Component);
+
+	exports['default'] = EthinicChartMaker;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(246);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(246, function() {
+			var newContent = __webpack_require__(246);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 246 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".hide {\n  display: none; }\n\n.prev-btn {\n  display: inline-block;\n  position: absolute;\n  background-color: #9e1b32;\n  color: white;\n  left: 45%;\n  border-right: 2px solid grey;\n  padding: 2px 12px 2px 5px;\n  cursor: pointer; }\n  .prev-btn:active {\n    background-color: #C26D7C; }\n\n.next-btn {\n  display: inline-block;\n  position: absolute;\n  background-color: #9e1b32;\n  color: white;\n  left: 54%;\n  padding: 2px 5px 2px 10px;\n  cursor: pointer; }\n  .next-btn:active {\n    background-color: #C26D7C; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 247 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var React = __webpack_require__(126);
 
-	__webpack_require__(245);
+	__webpack_require__(248);
 
 	var viewConstants = {
 		survey: 'survey_completion',
 		needs: 'needs_fullfilled',
 		solar: 'solar_lamp_impact',
-		priorities: 'priorities_for_spending'
+		priorities: 'priorities_for_spending',
+		others: 'others'
 	};
 
 	var NavBar = (function (_React$Component) {
@@ -38122,7 +38298,7 @@
 							React.createElement(
 								'span',
 								null,
-								'Survey Completion'
+								'Respondent Demographics'
 							)
 						),
 						React.createElement(
@@ -38154,6 +38330,16 @@
 								null,
 								'Priorities for Spending'
 							)
+						),
+						React.createElement(
+							'a',
+							{ className: 'nav-button', href: '#',
+								onClick: this.setActiveView.bind(this, viewConstants.others) },
+							React.createElement(
+								'span',
+								null,
+								'Others'
+							)
 						)
 					)
 				);
@@ -38170,21 +38356,21 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 245 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(246);
+	var content = __webpack_require__(249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(237)(content, {});
 	// Hot Module Replacement
 	if(true) {
 		// When the styles change, update the <style> tags
-		module.hot.accept(246, function() {
-			var newContent = __webpack_require__(246);
+		module.hot.accept(249, function() {
+			var newContent = __webpack_require__(249);
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -38193,7 +38379,7 @@
 	}
 
 /***/ },
-/* 246 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(234)();
@@ -38201,19 +38387,19 @@
 
 
 	// module
-	exports.push([module.id, ".navbar {\n  background-color: #9e1b32;\n  font-family: \"Open Sans\", \"Helvetica Nue\", sans-serif;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 20000;\n  width: 100%; }\n  .navbar a {\n    text-decoration: none; }\n\n.banner {\n  background-image: url(" + __webpack_require__(247) + ");\n  background-size: 308px;\n  width: 308px;\n  height: 69px;\n  display: inline-block;\n  margin: 2px 24px; }\n\n.navbar .nav-button {\n  display: inline-block;\n  padding: 15px 8px;\n  transition: all 0.2s ease-in-out;\n  cursor: pointer; }\n\n.navbar .nav-button:hover, .navbar .nav-button.active {\n  background-color: rgba(255, 255, 255, 0.2); }\n\n.navbar .nav-button > span {\n  height: 50px;\n  font-size: 12px;\n  line-height: 20px;\n  text-transform: uppercase;\n  font-weight: 700;\n  letter-spacing: 1px;\n  color: #fcfcfc; }\n\n.navbar .navbar-buttons-group {\n  float: right;\n  margin-top: 11px;\n  margin-right: 24px; }\n", ""]);
+	exports.push([module.id, ".navbar {\n  background-color: #9e1b32;\n  font-family: \"Open Sans\", \"Helvetica Nue\", sans-serif;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 20000;\n  width: 100%; }\n  .navbar a {\n    text-decoration: none; }\n\n.banner {\n  background-image: url(" + __webpack_require__(250) + ");\n  background-size: 308px;\n  width: 308px;\n  height: 69px;\n  display: inline-block;\n  margin: 2px 24px; }\n\n.navbar .nav-button {\n  display: inline-block;\n  padding: 15px 8px;\n  transition: all 0.2s ease-in-out;\n  cursor: pointer; }\n\n.navbar .nav-button:hover, .navbar .nav-button.active {\n  background-color: rgba(255, 255, 255, 0.2); }\n\n.navbar .nav-button > span {\n  height: 50px;\n  font-size: 12px;\n  line-height: 20px;\n  text-transform: uppercase;\n  font-weight: 700;\n  letter-spacing: 1px;\n  color: #fcfcfc; }\n\n.navbar .navbar-buttons-group {\n  float: right;\n  margin-top: 11px;\n  margin-right: 24px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 247 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "a67818e506716d8e46419b782d830e23.jpg"
 
 /***/ },
-/* 248 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -38238,32 +38424,37 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ChartHeading = __webpack_require__(249);
+	var _ChartHeading = __webpack_require__(252);
 
 	var _ChartHeading2 = _interopRequireDefault(_ChartHeading);
 
-	var _NeedsBar = __webpack_require__(252);
+	var _NeedsBar = __webpack_require__(255);
 
 	var _NeedsBar2 = _interopRequireDefault(_NeedsBar);
 
-	var _SolarBar = __webpack_require__(255);
+	var _SolarBar = __webpack_require__(258);
 
 	var _SolarBar2 = _interopRequireDefault(_SolarBar);
 
-	var _PrioritiesBar = __webpack_require__(258);
+	var _PrioritiesBar = __webpack_require__(261);
 
 	var _PrioritiesBar2 = _interopRequireDefault(_PrioritiesBar);
+
+	var _Others = __webpack_require__(264);
+
+	var _Others2 = _interopRequireDefault(_Others);
 
 	//var barData = require('../../data/mockData.json');
 	var barData = __webpack_require__(231);
 
-	__webpack_require__(261);
+	__webpack_require__(267);
 
 	var viewConstants = {
 		survey: 'survey_completion',
 		needs: 'needs_fullfilled',
 		solar: 'solar_lamp_impact',
-		priorities: 'priorities_for_spending'
+		priorities: 'priorities_for_spending',
+		others: 'others'
 	};
 
 	var dataConstants = {
@@ -38310,6 +38501,8 @@
 									return _react2['default'].createElement(_SolarBar2['default'], null);
 								case viewConstants.priorities:
 									return _react2['default'].createElement(_PrioritiesBar2['default'], null);
+								case viewConstants.others:
+									return _react2['default'].createElement(_Others2['default'], null);
 								default:
 									return null;
 							}
@@ -38327,105 +38520,6 @@
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
-
-/***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(126);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	__webpack_require__(250);
-
-	var ChartHeading = (function (_React$Component) {
-		_inherits(ChartHeading, _React$Component);
-
-		function ChartHeading() {
-			_classCallCheck(this, ChartHeading);
-
-			_get(Object.getPrototypeOf(ChartHeading.prototype), 'constructor', this).call(this);
-			this.heading = {
-				needs_fullfilled: "Were the needs fully met?",
-				solar_lamp_impact: "Solar Lamp Impact",
-				priorities_for_spending: "Priorities for Spending"
-			};
-		}
-
-		_createClass(ChartHeading, [{
-			key: 'render',
-			value: function render() {
-				return _react2['default'].createElement(
-					'div',
-					{ className: 'chart-heading' },
-					this.heading[this.props.activeView]
-				);
-			}
-		}]);
-
-		return ChartHeading;
-	})(_react2['default'].Component);
-
-	exports['default'] = ChartHeading;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
-
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(251);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		module.hot.accept(251, function() {
-			var newContent = __webpack_require__(251);
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(234)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".chart-heading {\n  padding-top: 100px;\n  padding-bottom: 80px;\n  font-size: 2em;\n  font-weight: bold;\n  margin-left: 20px; }\n", ""]);
-
-	// exports
-
 
 /***/ },
 /* 252 */
@@ -38453,9 +38547,109 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	__webpack_require__(253);
+
+	var ChartHeading = (function (_React$Component) {
+		_inherits(ChartHeading, _React$Component);
+
+		function ChartHeading() {
+			_classCallCheck(this, ChartHeading);
+
+			_get(Object.getPrototypeOf(ChartHeading.prototype), 'constructor', this).call(this);
+			this.heading = {
+				needs_fullfilled: "Urgently Needed Items",
+				solar_lamp_impact: "Solar Lamp Impact",
+				priorities_for_spending: "Priorities for Spending",
+				others: "Others"
+			};
+		}
+
+		_createClass(ChartHeading, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'chart-heading' },
+					this.heading[this.props.activeView]
+				);
+			}
+		}]);
+
+		return ChartHeading;
+	})(_react2['default'].Component);
+
+	exports['default'] = ChartHeading;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(254);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(254, function() {
+			var newContent = __webpack_require__(254);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".chart-heading {\n  padding-top: 100px;\n  padding-bottom: 80px;\n  font-size: 2em;\n  font-weight: bold;\n  margin-left: 20px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(126);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var barData = __webpack_require__(231);
 
-	__webpack_require__(253);
+	__webpack_require__(256);
 
 	var viewConstants = {
 		survey: 'survey_completion',
@@ -38513,6 +38707,10 @@
 					labels: ['Sindhupalchok', 'Dolakha', 'Nuwakot', 'Kavre'],
 					series: [data[1]]
 				};
+				this.chartNeedsData[2] = {
+					labels: ['NFI', 'Cash', 'Food', 'Medical Care', 'Supplies of Temporary Shelter', 'Tents', 'Other Assistance'],
+					series: [data[2]]
+				};
 			}
 		}, {
 			key: 'makePercentCircles',
@@ -38547,10 +38745,23 @@
 					height: 400,
 					high: 100
 				};
+				var options_2 = {
+					axisX: {
+						showGrid: false
+					},
+					axisY: {
+						showGrid: false,
+						showLabel: false,
+						offset: 100
+					},
+					high: 100
+				};
 				var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
 				var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
+				var chartAssistance = new Chartist.Bar('.assistance', this.chartNeedsData[2], options_2);
 				this.makePercentCircles(chartNeedsMet, 'y', 18, 5, false);
 				this.makePercentCircles(chartNeedsUnmet, 'y', 18, 5, false);
+				this.makePercentCircles(chartAssistance, 'y', 18, 5, false);
 			}
 		}, {
 			key: 'render',
@@ -38563,7 +38774,7 @@
 					needsUnmetTotal += Number(item[dataConstants.needs_unmet]);
 				});
 
-				this.setChartData([[Math.round(Number(barData.district_wise[0][dataConstants.needs_met]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_met]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_met]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_met]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.needs_unmet]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_unmet]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_unmet]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_unmet]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100]]);
+				this.setChartData([[Math.round(Number(barData.district_wise[0][dataConstants.needs_met]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_met]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_met]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_met]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.needs_unmet]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_unmet]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_unmet]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_unmet]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Number(barData.aggregate.assistance[0]), Number(barData.aggregate.assistance[1]), Number(barData.aggregate.assistance[2]), Number(barData.aggregate.assistance[3]), Number(barData.aggregate.assistance[4]), Number(barData.aggregate.assistance[5]), Number(barData.aggregate.assistance[6])]]);
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'needs' },
@@ -38573,7 +38784,7 @@
 						_react2['default'].createElement(
 							'span',
 							{ className: 'chart-title-needs' },
-							'Additional Urgent Items Not Needed'
+							'Respondets who said all urgently needed items were included'
 						)
 					),
 					_react2['default'].createElement('div', { className: 'vertical-line' }),
@@ -38583,7 +38794,16 @@
 						_react2['default'].createElement(
 							'span',
 							{ className: 'chart-title-needs' },
-							'Nedded Additional Urgent Items'
+							'Respondets who said not all urgently needed items were included'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'assistance' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-heading title-margin' },
+							'Types of Assistance Received'
 						)
 					)
 				);
@@ -38594,213 +38814,6 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = NeedsBar;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
-
-/***/ },
-/* 253 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(254);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		module.hot.accept(254, function() {
-			var newContent = __webpack_require__(254);
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 254 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(234)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
-
-/***/ },
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(126);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	//var barData = require('../../data/mockData.json');
-	var barData = __webpack_require__(231);
-
-	__webpack_require__(256);
-
-	var viewConstants = {
-		survey: 'survey_completion',
-		needs: 'needs_fullfilled',
-		solar: 'solar_lamp_impact',
-		priorities: 'priorities_for_spending'
-	};
-
-	var dataConstants = {
-		needs_met: 'needs_met',
-		needs_unmet: 'needs_unmet',
-		debt_taken: 'Debt Taken Due to Earthquake',
-		debt_not_taken: 'No Debt Due to Earthquake'
-	};
-
-	var SolarBar = (function (_React$Component) {
-		_inherits(SolarBar, _React$Component);
-
-		function SolarBar() {
-			_classCallCheck(this, SolarBar);
-
-			_get(Object.getPrototypeOf(SolarBar.prototype), 'constructor', this).call(this);
-			this.chartNeedsData = [];
-			this.chartSolarData = [];
-			this.chartPrioritiesData = [];
-			this.state = {
-				chartNeedsData: [],
-				chartSolarData: [],
-				chartPrioritiesData: []
-			};
-		}
-
-		_createClass(SolarBar, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				this.makeChart();
-			}
-		}, {
-			key: 'componentDidUpdate',
-			value: function componentDidUpdate() {
-				this.makeChart();
-			}
-		}, {
-			key: 'setChartSolarData',
-			value: function setChartSolarData(chartSolarData) {
-				var temp = [].concat(chartSolarData);
-				this.setState({
-					chartSolarData: temp
-				});
-			}
-		}, {
-			key: 'setChartData',
-			value: function setChartData(data) {
-				this.chartSolarData[0] = {
-					labels: ['Daily', 'Frequently', 'Seldom', 'Never', 'Did not receive a solar lamp'],
-					series: [data[0]]
-				};
-				this.chartSolarData[1] = {
-					labels: ['They feel more secure', 'It\'s easier for childern to study', 'They spend less money on charging'],
-					series: [data[1]]
-				};
-			}
-		}, {
-			key: 'makePercentCircles',
-			value: function makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
-				chart.on('draw', function (data) {
-					if (data.type === 'bar') {
-						data.group.append(new Chartist.Svg('circle', {
-							cx: data.x2,
-							cy: data.y2,
-							r: 25
-						}, 'percent-circle'));
-						data.group.append(new Chartist.Svg('text', {
-							x: data.x2 - textMarginX,
-							y: data.y2 - textMarginY
-						}, 'percent-text').attr({ transform: 'rotate(90 ' + data.x2 + ' ' + data.y2 + ')' }).text(data.value[valueAxis]).text('%'));
-					}
-				});
-			}
-		}, {
-			key: 'makeChart',
-			value: function makeChart() {
-				var options = {
-					axisX: {
-						showGrid: false,
-						showLabel: false
-					},
-					axisY: {
-						showGrid: false,
-						offset: 100
-					},
-					horizontalBars: true,
-					reverseData: true
-				};
-				var chartSolarFrequency = new Chartist.Bar('.frequency', this.chartSolarData[0], options);
-				var chartSolarUtility = new Chartist.Bar('.utility', this.chartSolarData[1], options);
-				this.makePercentCircles(chartSolarFrequency, 'x', 15, 3, true);
-				this.makePercentCircles(chartSolarUtility, 'x', 15, 3, true);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var totalFreq = Number(barData.aggregate.frequency[0]) + Number(barData.aggregate.frequency[1]) + Number(barData.aggregate.frequency[2]) + Number(barData.aggregate.frequency[3]) + Number(barData.aggregate.frequency[4]);
-				var totalUtil = Number(barData.aggregate.utility[0]) + Number(barData.aggregate.utility[1]) + Number(barData.aggregate.utility[2]);
-
-				this.setChartData([[Math.round(Number(barData.aggregate.frequency[0]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[1]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[2]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[3]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[4]) / totalFreq * 100)], [Math.round(Number(barData.aggregate.utility[0]) / totalUtil * 100), Math.round(Number(barData.aggregate.utility[1]) / totalUtil * 100), Math.round(Number(barData.aggregate.utility[2]) / totalUtil * 100)]]);
-				return _react2['default'].createElement(
-					'div',
-					{ className: 'solar-impact' },
-					_react2['default'].createElement(
-						'div',
-						{ className: 'frequency' },
-						_react2['default'].createElement(
-							'span',
-							{ className: 'chart-title-solar' },
-							'How often do you use the solar lamp?'
-						)
-					),
-					_react2['default'].createElement(
-						'div',
-						{ className: 'utility' },
-						_react2['default'].createElement(
-							'span',
-							{ className: 'chart-title-solar' },
-							'Since using solar lamp'
-						)
-					)
-				);
-			}
-		}]);
-
-		return SolarBar;
-	})(_react2['default'].Component);
-
-	exports['default'] = SolarBar;
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -38838,7 +38851,7 @@
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".chart-title-needs {\n  display: inline-block; }\n\n.needs-met .chart-title-needs {\n  margin-left: 20px !important; }\n\n.title-margin {\n  margin-left: -90px; }\n", ""]);
 
 	// exports
 
@@ -38869,16 +38882,230 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	//var barData = require('../../data/mockData.json');
 	var barData = __webpack_require__(231);
 
 	__webpack_require__(259);
 
-	var viewConstants = {
-		survey: 'survey_completion',
-		needs: 'needs_fullfilled',
-		solar: 'solar_lamp_impact',
-		priorities: 'priorities_for_spending'
-	};
+	var SolarBar = (function (_React$Component) {
+		_inherits(SolarBar, _React$Component);
+
+		function SolarBar() {
+			_classCallCheck(this, SolarBar);
+
+			_get(Object.getPrototypeOf(SolarBar.prototype), 'constructor', this).call(this);
+			this.chartSolarData = [];
+			this.state = {
+				chartSolarData: []
+			};
+		}
+
+		_createClass(SolarBar, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.makeChart();
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				this.makeChart();
+			}
+		}, {
+			key: 'setChartSolarData',
+			value: function setChartSolarData(chartSolarData) {
+				var temp = [].concat(chartSolarData);
+				this.setState({
+					chartSolarData: temp
+				});
+			}
+		}, {
+			key: 'setChartData',
+			value: function setChartData(data) {
+				this.chartSolarData[0] = {
+					labels: ['Daily', 'Frequently', 'Seldom', 'Never', 'Did not receive a solar lamp'],
+					series: [data[0]]
+				};
+				this.chartSolarData[1] = {
+					labels: ['Strongly Agree', 'Agree'],
+					series: [data[1]]
+				};
+				this.chartSolarData[2] = {
+					labels: ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'N/A'],
+					series: [data[2]]
+				};
+				this.chartSolarData[3] = {
+					labels: ['Strongly Agree', 'Agree', 'Neutral', 'Disagree'],
+					series: [data[3]]
+				};
+			}
+		}, {
+			key: 'makePercentCircles',
+			value: function makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
+				chart.on('draw', function (data) {
+					if (data.type === 'bar') {
+						data.group.append(new Chartist.Svg('circle', {
+							cx: data.x2,
+							cy: data.y2,
+							r: 25
+						}, 'percent-circle'));
+						data.group.append(new Chartist.Svg('text', {
+							x: data.x2 - textMarginX,
+							y: data.y2 - textMarginY
+						}, 'percent-text').attr({ transform: 'rotate(90 ' + data.x2 + ' ' + data.y2 + ')' }).text(data.value[valueAxis]).text('%'));
+					}
+				});
+			}
+		}, {
+			key: 'makeChart',
+			value: function makeChart() {
+				var options = {
+					axisX: {
+						showGrid: false,
+						showLabel: false
+					},
+					axisY: {
+						showGrid: false,
+						offset: 100
+					},
+					horizontalBars: true,
+					reverseData: true
+				};
+				var chartSolarFrequency = new Chartist.Bar('.frequency', this.chartSolarData[0], options);
+				var chartSolarUtility_secure = new Chartist.Bar('.utility_secure', this.chartSolarData[1], options);
+				var chartSolarUtility_children = new Chartist.Bar('.utility_children', this.chartSolarData[2], options);
+				var chartSolarUtility_money = new Chartist.Bar('.utility_money', this.chartSolarData[3], options);
+				this.makePercentCircles(chartSolarFrequency, 'x', 15, 3, true);
+				this.makePercentCircles(chartSolarUtility_secure, 'x', 15, 3, true);
+				this.makePercentCircles(chartSolarUtility_children, 'x', 15, 3, true);
+				this.makePercentCircles(chartSolarUtility_money, 'x', 15, 3, true);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var totalFreq = Number(barData.aggregate.frequency[0]) + Number(barData.aggregate.frequency[1]) + Number(barData.aggregate.frequency[2]) + Number(barData.aggregate.frequency[3]) + Number(barData.aggregate.frequency[4]);
+				var totalUtil_secure = Number(barData.aggregate.utility_secure[0]) + Number(barData.aggregate.utility_secure[1]);
+				var totalUtil_children = Number(barData.aggregate.utility_children[0]) + Number(barData.aggregate.utility_children[1]) + Number(barData.aggregate.utility_children[2]) + Number(barData.aggregate.utility_children[3]) + Number(barData.aggregate.utility_children[4]);
+				var totalUtil_money = Number(barData.aggregate.utility_money[0]) + Number(barData.aggregate.utility_money[1]) + Number(barData.aggregate.utility_money[2]) + Number(barData.aggregate.utility_money[3]);
+
+				this.setChartData([[Math.round(Number(barData.aggregate.frequency[0]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[1]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[2]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[3]) / totalFreq * 100), Math.round(Number(barData.aggregate.frequency[4]) / totalFreq * 100)], [Math.round(Number(barData.aggregate.utility_secure[0]) / totalUtil_secure * 100), Math.round(Number(barData.aggregate.utility_secure[1]) / totalUtil_secure * 100)], [Math.round(Number(barData.aggregate.utility_children[0]) / totalUtil_children * 100), Math.round(Number(barData.aggregate.utility_children[1]) / totalUtil_children * 100), Math.round(Number(barData.aggregate.utility_children[2]) / totalUtil_children * 100), Math.round(Number(barData.aggregate.utility_children[3]) / totalUtil_children * 100), Math.round(Number(barData.aggregate.utility_children[4]) / totalUtil_children * 100)], [Math.round(Number(barData.aggregate.utility_money[0]) / totalUtil_money * 100), Math.round(Number(barData.aggregate.utility_money[1]) / totalUtil_money * 100), Math.round(Number(barData.aggregate.utility_money[2]) / totalUtil_money * 100), Math.round(Number(barData.aggregate.utility_money[3]) / totalUtil_money * 100)]]);
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'solar-impact' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'frequency' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-solar' },
+							'How frequently the respondents used solar lamps'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'utility utility_secure' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-solar' },
+							'Since receiving the solar lamps, they feel more secure at night'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'utility utility_children' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-solar' },
+							'Solar lamps help their children study'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'utility utility_money' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-solar' },
+							'Solar lamps help them save money on electricity'
+						)
+					)
+				);
+			}
+		}]);
+
+		return SolarBar;
+	})(_react2['default'].Component);
+
+	exports['default'] = SolarBar;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(260);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(260, function() {
+			var newContent = __webpack_require__(260);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".chart-title-solar {\n  font-size: 1.4em;\n  margin-left: -150px; }\n\n.solar-impact {\n  margin-left: 5%; }\n\n.frequency {\n  position: relative;\n  width: 520px;\n  height: 250px;\n  margin-left: 20%;\n  margin-righ: 20px; }\n  .frequency .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .frequency .ct-label.ct-vertical.ct-start {\n    width: 80px !important;\n    padding-top: 5px !important; }\n\n.utility {\n  position: relative;\n  width: 500px;\n  height: 220px;\n  margin-left: 20%;\n  margin-top: 80px; }\n  .utility .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .utility .ct-label.ct-vertical.ct-start {\n    width: 80px !important;\n    padding-top: 5px !important; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(126);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var barData = __webpack_require__(231);
+
+	__webpack_require__(262);
 
 	var dataConstants = {
 		needs_met: 'Did not Require Additional Urgent Items',
@@ -39011,7 +39238,7 @@
 					_react2['default'].createElement(
 						'span',
 						{ className: 'chart-title-debt' },
-						'Have the receipients taken any debt?'
+						'Recepients who have taken debt after the earthquake'
 					),
 					_react2['default'].createElement(
 						'div',
@@ -39019,21 +39246,7 @@
 						_react2['default'].createElement(
 							'div',
 							{ className: 'have-received-debt' },
-							_react2['default'].createElement(
-								'span',
-								{ className: 'chart-title-received-debt' },
-								'Percentage of Debt Taken'
-							)
-						),
-						_react2['default'].createElement('div', { className: 'vertical-line' }),
-						_react2['default'].createElement(
-							'div',
-							{ className: 'have-not-received-debt' },
-							_react2['default'].createElement(
-								'span',
-								{ className: 'chart-title-received-debt' },
-								'Percentage of Debt Not Taken'
-							)
+							_react2['default'].createElement('span', { className: 'chart-title-received-debt' })
 						)
 					)
 				);
@@ -39050,81 +39263,44 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 259 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(260);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		module.hot.accept(260, function() {
-			var newContent = __webpack_require__(260);
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 260 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(234)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
-
-/***/ },
-/* 261 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(262);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		module.hot.accept(262, function() {
-			var newContent = __webpack_require__(262);
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(263);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(263, function() {
+			var newContent = __webpack_require__(263);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
 	exports = module.exports = __webpack_require__(234)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".needs {\n  margin-left: 40px; }\n\n.solar-impact {\n  margin-left: 5%; }\n\n.priorities {\n  margin-left: 5%; }\n\n.debt {\n  margin-top: 20px; }\n\n.needs-met {\n  display: inline-block;\n  width: 500px;\n  height: 450px; }\n  .needs-met .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.needs-unmet {\n  display: inline-block;\n  width: 500px;\n  height: 400px;\n  margin-left: -50px; }\n  .needs-unmet .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.frequency {\n  position: relative;\n  width: 520px;\n  height: 250px;\n  margin-left: 20%;\n  margin-righ: 20px; }\n  .frequency .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .frequency .ct-label.ct-vertical.ct-start {\n    width: 80px !important;\n    padding-top: 5px !important; }\n\n.utility {\n  position: relative;\n  width: 500px;\n  height: 220px;\n  margin-left: 20%;\n  margin-top: 80px; }\n  .utility .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .utility .ct-label.ct-vertical.ct-start {\n    width: 80px !important;\n    padding-top: 5px !important; }\n\n.area-spending {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .area-spending .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .area-spending .ct-series-b .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.have-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px; }\n  .have-received-debt .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.have-not-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px;\n  margin-left: -110px; }\n  .have-not-received-debt .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.ct-horizontal {\n  border-top: 1px solid #979797;\n  padding-top: 5px; }\n\n.ct-series {\n  -webkit-transform: translateY(5px);\n          transform: translateY(5px); }\n\n.vertical-line {\n  display: inline-block;\n  background-color: #979797;\n  width: 1px;\n  height: 400px;\n  margin-left: -15px;\n  margin-bottom: 29px; }\n\n.chart-title-needs {\n  margin-left: 100px;\n  margin-top: -20px;\n  font-size: 1.4em; }\n\n.chart-title-received-debt {\n  margin-left: 180px;\n  font-size: 1.2em; }\n\n.chart-title-solar {\n  font-size: 1.4em;\n  margin-left: -150px; }\n\n.chart-title-debt {\n  font-size: 1.4em;\n  margin-top: -20px;\n  margin-left: 85px; }\n\n.chart-title-spending {\n  font-size: 1.4em; }\n\n.percent-circle {\n  fill: transparent !important; }\n", ""]);
+	exports.push([module.id, ".debt {\n  margin-left: 150px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -39149,7 +39325,270 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(264);
+	var barData = __webpack_require__(231);
+
+	__webpack_require__(265);
+
+	var dataConstants = {
+		needs_met: 'Did not Require Additional Urgent Items',
+		needs_unmet: 'Nedded Additional Urgent Items not Present in the Kit',
+		debt_taken: 'Debt Taken Due to Earthquake',
+		debt_not_taken: 'No Debt Due to Earthquake'
+	};
+
+	var Others = (function (_React$Component) {
+		_inherits(Others, _React$Component);
+
+		function Others() {
+			_classCallCheck(this, Others);
+
+			_get(Object.getPrototypeOf(Others.prototype), 'constructor', this).call(this);
+			this.chartPrioritiesData = [];
+			this.state = {
+				chartPrioritiesData: []
+			};
+		}
+
+		_createClass(Others, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.makeChart();
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				this.makeChart();
+			}
+		}, {
+			key: 'setChartData',
+			value: function setChartData(data) {
+				this.chartPrioritiesData[0] = {
+					labels: ['Relative and Friends', 'Government', 'Private Sector', 'NGO’s'],
+					series: [data[0]]
+				};
+				this.chartPrioritiesData[1] = {
+					labels: ['One Hour or Less', '1 to 2 Hours', '2 to 3 Hours', '3 to 4 Hours', 'More Than 4 Hours', 'Time Unknown'],
+					series: [data[1]]
+				};
+			}
+		}, {
+			key: 'makePercentCircles',
+			value: function makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
+				chart.on('draw', function (data) {
+					if (data.type === 'bar') {
+						if (horizBar === false) {
+							data.group.append(new Chartist.Svg('circle', {
+								cx: data.x2,
+								cy: data.y2,
+								r: 25
+							}, 'percent-circle'));
+							data.group.append(new Chartist.Svg('text', {
+								x: data.x2 - textMarginX,
+								y: data.y2 - textMarginY
+							}, 'percent-text').text(data.value[valueAxis]).text('%'));
+						}
+						if (horizBar === true) {
+							data.group.append(new Chartist.Svg('circle', {
+								cx: data.x2,
+								cy: data.y2,
+								r: 25
+							}, 'percent-circle'));
+							data.group.append(new Chartist.Svg('text', {
+								x: data.x2 - textMarginX,
+								y: data.y2 - textMarginY
+							}, 'percent-text').text(data.value[valueAxis]));
+						}
+					}
+				});
+			}
+		}, {
+			key: 'makeChart',
+			value: function makeChart() {
+				var options_1 = {
+					axisX: {
+						showGrid: false,
+						showLabel: false
+					},
+					axisY: {
+						showGrid: false,
+						offset: 100
+					},
+					horizontalBars: true,
+					reverseData: true,
+					seriesBarDistance: 25
+				};
+				var options_2 = {
+					axisX: {
+						showGrid: false
+					},
+					axisY: {
+						showGrid: false,
+						showLabel: false,
+						offset: 100
+					},
+					high: 60
+				};
+				var options_3 = {
+					axisX: {
+						showGrid: false
+					},
+					axisY: {
+						showGrid: false,
+						showLabel: false,
+						offset: 100
+					},
+					high: 100
+				};
+				var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_2);
+				var chartPrioritiesDebt1 = new Chartist.Bar('.distance', this.chartPrioritiesData[1], options_2);
+				var chartPrioritiesAssistance = new Chartist.Bar('.assistance', this.chartPrioritiesData[2], options_3);
+
+				this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
+				this.makePercentCircles(chartPrioritiesDebt1, 'y', 13, 5, true);
+				this.makePercentCircles(chartPrioritiesAssistance, 'y', 13, 5, false);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var total = 808;
+				this.setChartData(
+				// no data for composite graph only data for single graph. ask nirab dai
+				[[Math.round(Number(barData.aggregate.cash[0]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[1]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[2]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[3]) / total * 10000) / 100], [Number(barData.aggregate.distance[0]), Number(barData.aggregate.distance[1]), Number(barData.aggregate.distance[2]), Number(barData.aggregate.distance[3]), Number(barData.aggregate.distance[4]), Number(barData.aggregate.distance[5])], [Number(barData.aggregate.assistance[0]), Number(barData.aggregate.assistance[1]), Number(barData.aggregate.assistance[2]), Number(barData.aggregate.assistance[3]), Number(barData.aggregate.assistance[4]), Number(barData.aggregate.assistance[5]), Number(barData.aggregate.assistance[6])]]);
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'priorities' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'area-spending' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-spending' },
+							'Respondents received cash from these sectors'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'distance' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-spending' },
+							'Number of respondents who had to travel to the distribution point'
+						)
+					)
+				);
+			}
+		}]);
+
+		return Others;
+	})(_react2['default'].Component);
+
+	exports['default'] = Others;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(238); if (makeExportsHot(module, __webpack_require__(126))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(266);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(266, function() {
+			var newContent = __webpack_require__(266);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 266 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".distance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .distance .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.assistance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .assistance .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(268);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		module.hot.accept(268, function() {
+			var newContent = __webpack_require__(268);
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".needs {\n  margin-left: 40px; }\n\n.priorities {\n  margin-left: 5%; }\n\n.debt {\n  margin-top: 20px; }\n\n.needs-met {\n  display: inline-block;\n  width: 500px;\n  height: 450px; }\n  .needs-met .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.needs-unmet {\n  display: inline-block;\n  width: 500px;\n  height: 400px;\n  margin-left: -50px; }\n  .needs-unmet .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.area-spending {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .area-spending .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .area-spending .ct-series-b .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.have-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px; }\n  .have-received-debt .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.have-not-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px;\n  margin-left: -110px; }\n  .have-not-received-debt .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.ct-horizontal {\n  border-top: 1px solid #979797;\n  padding-top: 5px; }\n\n.ct-series {\n  -webkit-transform: translateY(5px);\n          transform: translateY(5px); }\n\n.vertical-line {\n  display: inline-block;\n  background-color: #979797;\n  width: 1px;\n  height: 400px;\n  margin-left: -15px;\n  margin-bottom: 29px; }\n\n.chart-title-needs {\n  margin-left: 100px;\n  margin-top: -20px;\n  font-size: 1.4em; }\n\n.chart-title-received-debt {\n  margin-left: 180px;\n  font-size: 1.2em; }\n\n.chart-title-debt {\n  font-size: 1.4em;\n  margin-top: -20px;\n  margin-left: 85px; }\n\n.chart-title-spending {\n  font-size: 1.4em; }\n\n.percent-circle {\n  fill: transparent !important; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(62), RootInstanceProvider = __webpack_require__(70), ReactMount = __webpack_require__(72), React = __webpack_require__(126); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(126);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	__webpack_require__(270);
 
 	var Footer = (function (_React$Component) {
 		_inherits(Footer, _React$Component);
@@ -39181,21 +39620,21 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 264 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(237)(content, {});
 	// Hot Module Replacement
 	if(true) {
 		// When the styles change, update the <style> tags
-		module.hot.accept(265, function() {
-			var newContent = __webpack_require__(265);
+		module.hot.accept(271, function() {
+			var newContent = __webpack_require__(271);
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -39204,7 +39643,7 @@
 	}
 
 /***/ },
-/* 265 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(234)();
@@ -39212,27 +39651,27 @@
 
 
 	// module
-	exports.push([module.id, ".footer {\n  margin: auto;\n  text-align: center;\n  height: 30px;\n  width: 80%; }\n", ""]);
+	exports.push([module.id, ".footer {\n  margin: auto;\n  margin-top: 150px;\n  text-align: center;\n  height: 30px;\n  width: 80%; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 266 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(267);
+	var content = __webpack_require__(273);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(237)(content, {});
 	// Hot Module Replacement
 	if(true) {
 		// When the styles change, update the <style> tags
-		module.hot.accept(267, function() {
-			var newContent = __webpack_require__(267);
+		module.hot.accept(273, function() {
+			var newContent = __webpack_require__(273);
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -39241,7 +39680,7 @@
 	}
 
 /***/ },
-/* 267 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(234)();
@@ -39255,7 +39694,7 @@
 
 
 /***/ },
-/* 268 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "index.html"
