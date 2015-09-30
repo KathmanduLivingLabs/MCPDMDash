@@ -68,8 +68,8 @@ export default class SolarBar extends React.Component {
 	makeChart() {
 		var options = {
 			axisX: {
-				showGrid: false,
-				showLabel: false
+				position: 'start',
+				showGrid: false
 			},
 			axisY: {
 				showGrid: false,

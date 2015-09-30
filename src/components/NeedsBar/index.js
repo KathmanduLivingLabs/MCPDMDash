@@ -82,7 +82,16 @@ export default class NeedsBar extends React.Component {
 				showGrid: false
 			},
 			axisY: {
-				showGrid: false,
+			},
+			height: 400,
+			high: 100,
+		};
+		var options1_2 = {
+			axisX: {
+				showGrid: false
+			},
+			axisY: {
+				position: 'end',
 				showLabel: false
 			},
 			height: 400,
@@ -93,14 +102,12 @@ export default class NeedsBar extends React.Component {
 				showGrid: false,
 			},
 			axisY: {
-				showGrid: false,
-				showLabel: false,
 				offset: 100
 			},
 			high: 30,
 		};
 		var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
-		var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
+		var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options1_2);
 		var chartAssistance = new Chartist.Bar('.assistance', this.chartNeedsData[2], options_2);
 		this.makePercentCircles(chartNeedsMet, 'y', 18, 5, false);
 		this.makePercentCircles(chartNeedsUnmet, 'y', 18, 5, false);

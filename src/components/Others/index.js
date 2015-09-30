@@ -43,6 +43,10 @@ export default class Others extends React.Component {
 				'Porter', 'Truck', 'Motor Vehicle'],
 			series: [data[2]]
 		};
+		this.chartPrioritiesData[3] = {
+			labels: ['Less Then 2 to 6 Hours', '2 to 6 Hours', '6 Hours to Whole Day'],
+			series: [data[3]]
+		};
 	}
 
 	makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
@@ -93,8 +97,6 @@ export default class Others extends React.Component {
 				showGrid: false,
 			},
 			axisY: {
-				showGrid: false,
-				showLabel: false,
 				offset: 100
 			},
 			high: 60,
@@ -104,8 +106,6 @@ export default class Others extends React.Component {
 				showGrid: false,
 			},
 			axisY: {
-				showGrid: false,
-				showLabel: false,
 				offset: 100
 			},
 			high: 100,
@@ -113,15 +113,18 @@ export default class Others extends React.Component {
 		var chartPrioritiesSpending = new Chartist.Bar('.received-cash', this.chartPrioritiesData[0], options_2);
 		var chartPrioritiesDebt1 = new Chartist.Bar('.distance', this.chartPrioritiesData[1], options_2);
 		var chartPrioritiesTravel = new Chartist.Bar('.travel', this.chartPrioritiesData[2], options_3);
+		var chartPrioritiesWait = new Chartist.Bar('.wait', this.chartPrioritiesData[3], options_3);
 
 		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 		this.makePercentCircles(chartPrioritiesDebt1, 'y', 13, 5, true);
 		this.makePercentCircles(chartPrioritiesTravel, 'y', 13, 5, false);
+		this.makePercentCircles(chartPrioritiesWait, 'y', 13, 5, false);
 	}
 	
 	render() {
 		var total = 808;
 		var total_travel = 403;
+		var total_wait = 69;
 		this.setChartData(
 			// no data for composite graph only data for single graph. ask nirab dai
 			[[
@@ -144,6 +147,11 @@ export default class Others extends React.Component {
 				Math.round((Number(barData.aggregate.travel[4]) / total_travel) * 10000) / 100,
 				Math.round((Number(barData.aggregate.travel[5]) / total_travel) * 10000) / 100,
 
+			], [
+				Math.round((Number(barData.aggregate.wait[0]) / total_wait) * 10000) / 100,
+				Math.round((Number(barData.aggregate.wait[1]) / total_wait) * 10000) / 100,
+				Math.round((Number(barData.aggregate.wait[2]) / total_wait) * 10000) / 100,
+				Math.round((Number(barData.aggregate.wait[3]) / total_wait) * 10000) / 100,
 			]]
 		);
 		return(
@@ -156,6 +164,9 @@ export default class Others extends React.Component {
 				</div>
 				<div className="travel">
 					<span className="chart-title-spending">Mode of Transport</span>
+				</div>
+				<div className="wait travel">
+					<span className="chart-title-spending">Average Wait Time for Receiving Kit/Cash</span>
 				</div>
 			</div>
 		);
