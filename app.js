@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4fd0cda38a7d50b5cb35"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "733c6d922806d83ebae1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30863,10 +30863,36 @@
 				27
 			],
 			"area_of_spending": [
-				573300,
-				19350,
-				4162800,
-				247350
+				13.68,
+				7.35,
+				12.32,
+				2.76,
+				1.08,
+				2.53,
+				2.34,
+				3.14,
+				1.08,
+				0.8,
+				0.37,
+				0.05,
+				0.28,
+				0.28,
+				1.17,
+				17.1,
+				9.6,
+				7.68,
+				2.34,
+				1.41,
+				2.39,
+				3.51,
+				3.14,
+				1.55,
+				0.84,
+				0.37,
+				0.05,
+				0.23,
+				0.23,
+				0.33
 			],
 			"ethinicity": [
 				201,
@@ -30898,6 +30924,14 @@
 				82,
 				40,
 				1
+			],
+			"travel": [
+				1,
+				340,
+				17,
+				29,
+				8,
+				8
 			]
 		}
 	};
@@ -38754,7 +38788,7 @@
 						showLabel: false,
 						offset: 100
 					},
-					high: 100
+					high: 30
 				};
 				var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
 				var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
@@ -38768,13 +38802,14 @@
 			value: function render() {
 				var needsMetTotal = 0;
 				var needsUnmetTotal = 0;
+				var total_assistance = 358;
 
 				barData.district_wise.map(function (item) {
 					needsMetTotal += Number(item[dataConstants.needs_met]);
 					needsUnmetTotal += Number(item[dataConstants.needs_unmet]);
 				});
 
-				this.setChartData([[Math.round(Number(barData.district_wise[0][dataConstants.needs_met]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_met]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_met]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_met]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.needs_unmet]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_unmet]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_unmet]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_unmet]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Number(barData.aggregate.assistance[0]), Number(barData.aggregate.assistance[1]), Number(barData.aggregate.assistance[2]), Number(barData.aggregate.assistance[3]), Number(barData.aggregate.assistance[4]), Number(barData.aggregate.assistance[5]), Number(barData.aggregate.assistance[6])]]);
+				this.setChartData([[Math.round(Number(barData.district_wise[0][dataConstants.needs_met]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_met]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_met]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_met]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.needs_unmet]) / (Number(barData.district_wise[0][dataConstants.needs_met]) + Number(barData.district_wise[0][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.needs_unmet]) / (Number(barData.district_wise[1][dataConstants.needs_met]) + Number(barData.district_wise[1][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.needs_unmet]) / (Number(barData.district_wise[2][dataConstants.needs_met]) + Number(barData.district_wise[2][dataConstants.needs_unmet])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.needs_unmet]) / (Number(barData.district_wise[3][dataConstants.needs_met]) + Number(barData.district_wise[3][dataConstants.needs_unmet])) * 10000) / 100], [Math.round(Number(barData.aggregate.assistance[0]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[1]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[2]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[3]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[4]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[5]) / total_assistance * 10000) / 100, Math.round(Number(barData.aggregate.assistance[6]) / total_assistance * 10000) / 100]]);
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'needs' },
@@ -39140,9 +39175,12 @@
 		}, {
 			key: 'setChartData',
 			value: function setChartData(data) {
+				console.log(data[0][0].length);
+				console.log(data[0][0].slice(15, 30));
+				console.log('dootototo');
 				this.chartPrioritiesData[0] = {
-					labels: ['Food', 'Construction Material and Labour', 'Basic Household', 'Savings'],
-					series: [[data[0][0], data[0][1], data[0][2]], [,,, data[0][3]]]
+					labels: ['Shelter', 'Labour', 'Food', 'Medical', 'Paying Debts', 'Agriculture Inputs', 'Clothing', 'Education', 'Basic Household', 'Large Household', 'Transport', 'Giving Loan', 'Family Business', 'Hygiene', 'Savings'],
+					series: [data[0][0].slice(0, 15), data[0][0].slice(15, 30)]
 				};
 				this.chartPrioritiesData[1] = {
 					labels: ['Sindhupalchok', 'Dolakha', 'Nuwakot', 'Kavre'],
@@ -39204,8 +39242,8 @@
 						showGrid: false
 					},
 					axisY: {
-						showGrid: false,
-						showLabel: false,
+						showGrid: true,
+						showLabel: true,
 						offset: 100
 					}
 				};
@@ -39213,7 +39251,7 @@
 				var chartPrioritiesDebt1 = new Chartist.Bar('.have-received-debt', this.chartPrioritiesData[1], options_2);
 				var chartPrioritiesDebt2 = new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
 
-				this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
+				//this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 				this.makePercentCircles(chartPrioritiesDebt1, 'y', 18, 5, true);
 				this.makePercentCircles(chartPrioritiesDebt2, 'y', 18, 5, true);
 			}
@@ -39222,7 +39260,11 @@
 			value: function render() {
 				this.setChartData(
 				// no data for composite graph only data for single graph. ask nirab dai
-				[[Number(barData.aggregate.area_of_spending[0]), Number(barData.aggregate.area_of_spending[1]), Number(barData.aggregate.area_of_spending[2]), Number(barData.aggregate.area_of_spending[3])], [Math.round(Number(barData.district_wise[0][dataConstants.debt_taken]) / (Number(barData.district_wise[0][dataConstants.debt_taken]) + Number(barData.district_wise[0][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.debt_taken]) / (Number(barData.district_wise[1][dataConstants.debt_taken]) + Number(barData.district_wise[1][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.debt_taken]) / (Number(barData.district_wise[2][dataConstants.debt_taken]) + Number(barData.district_wise[2][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.debt_taken]) / (Number(barData.district_wise[3][dataConstants.debt_taken]) + Number(barData.district_wise[3][dataConstants.debt_not_taken])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.debt_not_taken]) / (Number(barData.district_wise[0][dataConstants.debt_taken]) + Number(barData.district_wise[0][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.debt_not_taken]) / (Number(barData.district_wise[1][dataConstants.debt_taken]) + Number(barData.district_wise[1][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.debt_not_taken]) / (Number(barData.district_wise[2][dataConstants.debt_taken]) + Number(barData.district_wise[2][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.debt_not_taken]) / (Number(barData.district_wise[3][dataConstants.debt_taken]) + Number(barData.district_wise[3][dataConstants.debt_not_taken])) * 10000) / 100]]);
+				[[(function () {
+					var obj = [];
+					for (var i = 0; i < 30; i++) obj.push(Number(barData.aggregate.area_of_spending[i]));
+					return obj;
+				})()], [Math.round(Number(barData.district_wise[0][dataConstants.debt_taken]) / (Number(barData.district_wise[0][dataConstants.debt_taken]) + Number(barData.district_wise[0][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.debt_taken]) / (Number(barData.district_wise[1][dataConstants.debt_taken]) + Number(barData.district_wise[1][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.debt_taken]) / (Number(barData.district_wise[2][dataConstants.debt_taken]) + Number(barData.district_wise[2][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.debt_taken]) / (Number(barData.district_wise[3][dataConstants.debt_taken]) + Number(barData.district_wise[3][dataConstants.debt_not_taken])) * 10000) / 100], [Math.round(Number(barData.district_wise[0][dataConstants.debt_not_taken]) / (Number(barData.district_wise[0][dataConstants.debt_taken]) + Number(barData.district_wise[0][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[1][dataConstants.debt_not_taken]) / (Number(barData.district_wise[1][dataConstants.debt_taken]) + Number(barData.district_wise[1][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[2][dataConstants.debt_not_taken]) / (Number(barData.district_wise[2][dataConstants.debt_taken]) + Number(barData.district_wise[2][dataConstants.debt_not_taken])) * 10000) / 100, Math.round(Number(barData.district_wise[3][dataConstants.debt_not_taken]) / (Number(barData.district_wise[3][dataConstants.debt_taken]) + Number(barData.district_wise[3][dataConstants.debt_not_taken])) * 10000) / 100]]);
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'priorities' },
@@ -39233,6 +39275,30 @@
 							'span',
 							{ className: 'chart-title-spending' },
 							'Top Three Area of Spending'
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'legend' },
+							_react2['default'].createElement(
+								'div',
+								{ className: 'first' },
+								_react2['default'].createElement('div', { className: 'first-icon' }),
+								_react2['default'].createElement(
+									'div',
+									{ className: 'first-label' },
+									'Cash Spent'
+								)
+							),
+							_react2['default'].createElement(
+								'div',
+								{ className: 'second' },
+								_react2['default'].createElement('div', { className: 'second-icon' }),
+								_react2['default'].createElement(
+									'div',
+									{ className: 'second-label' },
+									'Remaining Areas of Spending'
+								)
+							)
 						)
 					),
 					_react2['default'].createElement(
@@ -39294,7 +39360,7 @@
 
 
 	// module
-	exports.push([module.id, ".debt {\n  margin-left: 150px; }\n", ""]);
+	exports.push([module.id, ".debt {\n  margin-left: 150px; }\n\n.legend {\n  position: absolute;\n  right: 200px;\n  width: 220px;\n  height: 100px;\n  background: white;\n  outline: 1px solid lightgrey; }\n\n.first, .second {\n  padding: 10px 0px 10px 15px; }\n\n.first-icon {\n  display: inline-block;\n  margin-right: 20px;\n  width: 20px;\n  height: 20px;\n  background-color: #8DCCFF; }\n\n.second-icon {\n  display: inline-block;\n  margin-right: 20px;\n  width: 20px;\n  height: 20px;\n  background-color: #FFA9A1; }\n\n.first-label {\n  display: inline-block;\n  border-bottom: none;\n  width: 140px;\n  vertical-align: top; }\n\n.second-label {\n  display: inline-block;\n  border-bottom: none;\n  width: 130px;\n  vertical-align: middle; }\n", ""]);
 
 	// exports
 
@@ -39370,6 +39436,10 @@
 					labels: ['One Hour or Less', '1 to 2 Hours', '2 to 3 Hours', '3 to 4 Hours', 'More Than 4 Hours', 'Time Unknown'],
 					series: [data[1]]
 				};
+				this.chartPrioritiesData[2] = {
+					labels: ['Animal', 'Foot', 'Other Source', 'Porter', 'Truck', 'Motor Vehicle'],
+					series: [data[2]]
+				};
 			}
 		}, {
 			key: 'makePercentCircles',
@@ -39439,27 +39509,28 @@
 					},
 					high: 100
 				};
-				var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_2);
+				var chartPrioritiesSpending = new Chartist.Bar('.received-cash', this.chartPrioritiesData[0], options_2);
 				var chartPrioritiesDebt1 = new Chartist.Bar('.distance', this.chartPrioritiesData[1], options_2);
-				var chartPrioritiesAssistance = new Chartist.Bar('.assistance', this.chartPrioritiesData[2], options_3);
+				var chartPrioritiesTravel = new Chartist.Bar('.travel', this.chartPrioritiesData[2], options_3);
 
 				this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 				this.makePercentCircles(chartPrioritiesDebt1, 'y', 13, 5, true);
-				this.makePercentCircles(chartPrioritiesAssistance, 'y', 13, 5, false);
+				this.makePercentCircles(chartPrioritiesTravel, 'y', 13, 5, false);
 			}
 		}, {
 			key: 'render',
 			value: function render() {
 				var total = 808;
+				var total_travel = 403;
 				this.setChartData(
 				// no data for composite graph only data for single graph. ask nirab dai
-				[[Math.round(Number(barData.aggregate.cash[0]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[1]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[2]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[3]) / total * 10000) / 100], [Number(barData.aggregate.distance[0]), Number(barData.aggregate.distance[1]), Number(barData.aggregate.distance[2]), Number(barData.aggregate.distance[3]), Number(barData.aggregate.distance[4]), Number(barData.aggregate.distance[5])], [Number(barData.aggregate.assistance[0]), Number(barData.aggregate.assistance[1]), Number(barData.aggregate.assistance[2]), Number(barData.aggregate.assistance[3]), Number(barData.aggregate.assistance[4]), Number(barData.aggregate.assistance[5]), Number(barData.aggregate.assistance[6])]]);
+				[[Math.round(Number(barData.aggregate.cash[0]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[1]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[2]) / total * 10000) / 100, Math.round(Number(barData.aggregate.cash[3]) / total * 10000) / 100], [Number(barData.aggregate.distance[0]), Number(barData.aggregate.distance[1]), Number(barData.aggregate.distance[2]), Number(barData.aggregate.distance[3]), Number(barData.aggregate.distance[4]), Number(barData.aggregate.distance[5])], [Math.round(Number(barData.aggregate.travel[0]) / total_travel * 10000) / 100, Math.round(Number(barData.aggregate.travel[1]) / total_travel * 10000) / 100, Math.round(Number(barData.aggregate.travel[2]) / total_travel * 10000) / 100, Math.round(Number(barData.aggregate.travel[3]) / total_travel * 10000) / 100, Math.round(Number(barData.aggregate.travel[4]) / total_travel * 10000) / 100, Math.round(Number(barData.aggregate.travel[5]) / total_travel * 10000) / 100]]);
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'priorities' },
 					_react2['default'].createElement(
 						'div',
-						{ className: 'area-spending' },
+						{ className: 'received-cash' },
 						_react2['default'].createElement(
 							'span',
 							{ className: 'chart-title-spending' },
@@ -39473,6 +39544,15 @@
 							'span',
 							{ className: 'chart-title-spending' },
 							'Number of respondents who had to travel to the distribution point'
+						)
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'travel' },
+						_react2['default'].createElement(
+							'span',
+							{ className: 'chart-title-spending' },
+							'Mode of Transport'
 						)
 					)
 				);
@@ -39520,7 +39600,7 @@
 
 
 	// module
-	exports.push([module.id, ".distance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .distance .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.assistance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .assistance .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n", ""]);
+	exports.push([module.id, ".distance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .distance .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.travel {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .travel .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.assistance {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .assistance .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.received-cash {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .received-cash .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .received-cash .ct-series-b .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 15px; }\n", ""]);
 
 	// exports
 
@@ -39557,7 +39637,7 @@
 
 
 	// module
-	exports.push([module.id, ".needs {\n  margin-left: 40px; }\n\n.priorities {\n  margin-left: 5%; }\n\n.debt {\n  margin-top: 20px; }\n\n.needs-met {\n  display: inline-block;\n  width: 500px;\n  height: 450px; }\n  .needs-met .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.needs-unmet {\n  display: inline-block;\n  width: 500px;\n  height: 400px;\n  margin-left: -50px; }\n  .needs-unmet .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.area-spending {\n  width: 700px;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .area-spending .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n  .area-spending .ct-series-b .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.have-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px; }\n  .have-received-debt .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.have-not-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px;\n  margin-left: -110px; }\n  .have-not-received-debt .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.ct-horizontal {\n  border-top: 1px solid #979797;\n  padding-top: 5px; }\n\n.ct-series {\n  -webkit-transform: translateY(5px);\n          transform: translateY(5px); }\n\n.vertical-line {\n  display: inline-block;\n  background-color: #979797;\n  width: 1px;\n  height: 400px;\n  margin-left: -15px;\n  margin-bottom: 29px; }\n\n.chart-title-needs {\n  margin-left: 100px;\n  margin-top: -20px;\n  font-size: 1.4em; }\n\n.chart-title-received-debt {\n  margin-left: 180px;\n  font-size: 1.2em; }\n\n.chart-title-debt {\n  font-size: 1.4em;\n  margin-top: -20px;\n  margin-left: 85px; }\n\n.chart-title-spending {\n  font-size: 1.4em; }\n\n.percent-circle {\n  fill: transparent !important; }\n", ""]);
+	exports.push([module.id, ".needs {\n  margin-left: 40px; }\n\n.priorities {\n  margin-left: 5%; }\n\n.debt {\n  margin-top: 20px; }\n\n.needs-met {\n  display: inline-block;\n  width: 500px;\n  height: 450px; }\n  .needs-met .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.needs-unmet {\n  display: inline-block;\n  width: 500px;\n  height: 400px;\n  margin-left: -50px; }\n  .needs-unmet .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.area-spending {\n  width: 82%;\n  height: 300px;\n  margin-bottom: 80px;\n  margin-left: 80px; }\n  .area-spending .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 15px; }\n  .area-spending .ct-series-b .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 15px; }\n\n.have-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px; }\n  .have-received-debt .ct-series-a .ct-bar {\n    stroke: #8DCCFF;\n    stroke-width: 30px; }\n\n.have-not-received-debt {\n  display: inline-block;\n  width: 500px;\n  height: 300px;\n  margin-left: -110px; }\n  .have-not-received-debt .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n\n.ct-horizontal {\n  border-top: 1px solid #979797;\n  padding-top: 5px; }\n\n.ct-series {\n  -webkit-transform: translateY(5px);\n          transform: translateY(5px); }\n\n.vertical-line {\n  display: inline-block;\n  background-color: #979797;\n  width: 1px;\n  height: 400px;\n  margin-left: -15px;\n  margin-bottom: 29px; }\n\n.chart-title-needs {\n  margin-left: 100px;\n  margin-top: -20px;\n  font-size: 1.4em; }\n\n.chart-title-received-debt {\n  margin-left: 180px;\n  font-size: 1.2em; }\n\n.chart-title-debt {\n  font-size: 1.4em;\n  margin-top: -20px;\n  margin-left: 85px; }\n\n.chart-title-spending {\n  font-size: 1.4em; }\n\n.percent-circle {\n  fill: transparent !important; }\n\n.percent-text {\n  font-size: 0.75rem; }\n", ""]);
 
 	// exports
 
@@ -39688,7 +39768,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  font-family: \"Avenir\", \"Lato\", \"Open Sans\", \"Helvetica Nue\", \"Verdana\", sans-serif; }\n\n.container {\n  position: relative; }\n\n.chart-container {\n  /*margin-left: 5%;*/ }\n", ""]);
+	exports.push([module.id, "body {\n  font-family: \"Avenir\", \"Lato\", \"Open Sans\", \"Helvetica Nue\", \"Verdana\", sans-serif; }\n\n.container {\n  position: relative; }\n", ""]);
 
 	// exports
 
