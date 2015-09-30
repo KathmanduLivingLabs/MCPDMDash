@@ -94,11 +94,24 @@ export default class Others extends React.Component {
 			},
 			high: 60,
 		};
+		var options_3 = {
+			axisX: {
+				showGrid: false,
+			},
+			axisY: {
+				showGrid: false,
+				showLabel: false,
+				offset: 100
+			},
+			high: 100,
+		};
 		var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_2);
 		var chartPrioritiesDebt1 = new Chartist.Bar('.distance', this.chartPrioritiesData[1], options_2);
+		var chartPrioritiesAssistance = new Chartist.Bar('.assistance', this.chartPrioritiesData[2], options_3);
 
 		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 		this.makePercentCircles(chartPrioritiesDebt1, 'y', 13, 5, true);
+		this.makePercentCircles(chartPrioritiesAssistance, 'y', 13, 5, false);
 	}
 	
 	render() {
@@ -117,6 +130,15 @@ export default class Others extends React.Component {
 				Number(barData.aggregate.distance[3]),
 				Number(barData.aggregate.distance[4]),
 				Number(barData.aggregate.distance[5])
+			], [
+				Number(barData.aggregate.assistance[0]),
+				Number(barData.aggregate.assistance[1]),
+				Number(barData.aggregate.assistance[2]),
+				Number(barData.aggregate.assistance[3]),
+				Number(barData.aggregate.assistance[4]),
+				Number(barData.aggregate.assistance[5]),
+				Number(barData.aggregate.assistance[6])
+
 			]]
 		);
 		return(
