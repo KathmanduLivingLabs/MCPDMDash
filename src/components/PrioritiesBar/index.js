@@ -29,10 +29,14 @@ export default class PrioritiesBar extends React.Component {
 	}
 	
 	setChartData(data) {
+		console.log(data[0][0].length);
+		console.log(data[0][0].slice(15, 30));
+		console.log('dootototo');
 		this.chartPrioritiesData[0] = {
-			labels: ['Food', 'Construction Material and Labour', 'Basic Household', 'Savings'],
-			series: [[data[0][0], data[0][1], data[0][2]], 
-							[, , , data[0][3]]]
+			labels: ['Shelter', 'Labour', 'Food', 'Medical', 'Paying Debts', 'Agriculture Inputs',
+					'Clothing', 'Education', 'Basic Household', 'Large Household', 'Transport', 'Giving Loan',
+					'Family Business', 'Hygiene', 'Savings'],
+			series: [data[0][0].slice(0, 15), data[0][0].slice(15, 30)]
 		};
 		this.chartPrioritiesData[1] = {
 			labels: ['Sindhupalchok', 'Dolakha', 'Nuwakot', 'Kavre'],
@@ -92,8 +96,8 @@ export default class PrioritiesBar extends React.Component {
 				showGrid: false,
 			},
 			axisY: {
-				showGrid: false,
-				showLabel: false,
+				showGrid: true,
+				showLabel: true,
 				offset: 100
 			},
 		};
@@ -101,7 +105,7 @@ export default class PrioritiesBar extends React.Component {
 		var chartPrioritiesDebt1 = new Chartist.Bar('.have-received-debt', this.chartPrioritiesData[1], options_2);
 		var chartPrioritiesDebt2 = new Chartist.Bar('.have-not-received-debt', this.chartPrioritiesData[2], options_2);
 
-		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
+		//this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 		this.makePercentCircles(chartPrioritiesDebt1, 'y', 18, 5, true);
 		this.makePercentCircles(chartPrioritiesDebt2, 'y', 18, 5, true);
 	}
@@ -110,10 +114,12 @@ export default class PrioritiesBar extends React.Component {
 		this.setChartData(
 			// no data for composite graph only data for single graph. ask nirab dai
 			[[
-				Number(barData.aggregate.area_of_spending[0]),
-				Number(barData.aggregate.area_of_spending[1]),
-				Number(barData.aggregate.area_of_spending[2]), 
-				Number(barData.aggregate.area_of_spending[3])
+				(() => {
+					var obj = [];
+					for(var i = 0; i < 30; i++)
+						obj.push(Number(barData.aggregate.area_of_spending[i]));
+					return obj;
+				})()
 			], [
 				Math.round((Number(barData.district_wise[0][dataConstants.debt_taken]) /
 				(Number(barData.district_wise[0][dataConstants.debt_taken]) + 
@@ -152,13 +158,22 @@ export default class PrioritiesBar extends React.Component {
 			<div className="priorities">
 				<div className="area-spending">
 					<span className="chart-title-spending">Top Three Area of Spending</span>
+					<div className="legend">
+						<div className="first">
+							<div className="first-icon"></div>
+							<div className="first-label">Cash Spent</div>
+						</div>
+						<div className="second">
+							<div className="second-icon"></div>
+							<div className="second-label">Remaining Areas of Spending</div>
+						</div>
+					</div>
 				</div>
 					<span className="chart-title-debt">Recepients who have taken debt after the earthquake</span>
 				<div className="debt">
 					<div className="have-received-debt">
 						<span className="chart-title-received-debt"></span>
 					</div>
-					
 				</div>
 			</div>
 		);

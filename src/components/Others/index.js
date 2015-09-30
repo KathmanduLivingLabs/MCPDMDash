@@ -38,6 +38,11 @@ export default class Others extends React.Component {
 				'3 to 4 Hours', 'More Than 4 Hours', 'Time Unknown'],
 			series: [data[1]]
 		};
+		this.chartPrioritiesData[2] = {
+			labels: ['Animal', 'Foot', 'Other Source', 
+				'Porter', 'Truck', 'Motor Vehicle'],
+			series: [data[2]]
+		};
 	}
 
 	makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
@@ -105,17 +110,18 @@ export default class Others extends React.Component {
 			},
 			high: 100,
 		};
-		var chartPrioritiesSpending = new Chartist.Bar('.area-spending', this.chartPrioritiesData[0], options_2);
+		var chartPrioritiesSpending = new Chartist.Bar('.received-cash', this.chartPrioritiesData[0], options_2);
 		var chartPrioritiesDebt1 = new Chartist.Bar('.distance', this.chartPrioritiesData[1], options_2);
-		var chartPrioritiesAssistance = new Chartist.Bar('.assistance', this.chartPrioritiesData[2], options_3);
+		var chartPrioritiesTravel = new Chartist.Bar('.travel', this.chartPrioritiesData[2], options_3);
 
 		this.makePercentCircles(chartPrioritiesSpending, 'y', 25, 5, false);
 		this.makePercentCircles(chartPrioritiesDebt1, 'y', 13, 5, true);
-		this.makePercentCircles(chartPrioritiesAssistance, 'y', 13, 5, false);
+		this.makePercentCircles(chartPrioritiesTravel, 'y', 13, 5, false);
 	}
 	
 	render() {
 		var total = 808;
+		var total_travel = 403;
 		this.setChartData(
 			// no data for composite graph only data for single graph. ask nirab dai
 			[[
@@ -131,23 +137,25 @@ export default class Others extends React.Component {
 				Number(barData.aggregate.distance[4]),
 				Number(barData.aggregate.distance[5])
 			], [
-				Number(barData.aggregate.assistance[0]),
-				Number(barData.aggregate.assistance[1]),
-				Number(barData.aggregate.assistance[2]),
-				Number(barData.aggregate.assistance[3]),
-				Number(barData.aggregate.assistance[4]),
-				Number(barData.aggregate.assistance[5]),
-				Number(barData.aggregate.assistance[6])
+				Math.round((Number(barData.aggregate.travel[0]) / total_travel) * 10000) / 100,
+				Math.round((Number(barData.aggregate.travel[1]) / total_travel) * 10000) / 100,
+				Math.round((Number(barData.aggregate.travel[2]) / total_travel) * 10000) / 100,
+				Math.round((Number(barData.aggregate.travel[3]) / total_travel) * 10000) / 100,
+				Math.round((Number(barData.aggregate.travel[4]) / total_travel) * 10000) / 100,
+				Math.round((Number(barData.aggregate.travel[5]) / total_travel) * 10000) / 100,
 
 			]]
 		);
 		return(
 			<div className="priorities">
-				<div className="area-spending">
+				<div className="received-cash">
 					<span className="chart-title-spending">Respondents received cash from these sectors</span>
 				</div>
 				<div className="distance">
 					<span className="chart-title-spending">Number of respondents who had to travel to the distribution point</span>
+				</div>
+				<div className="travel">
+					<span className="chart-title-spending">Mode of Transport</span>
 				</div>
 			</div>
 		);

@@ -9,6 +9,17 @@
 	}
 }
 
+.travel {
+	width: 700px;
+	height: 300px;
+	margin-bottom: 80px;
+	margin-left: 80px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 30px;
+	}
+}
+
 .assistance {
 	width: 700px;
 	height: 300px;
@@ -17,5 +28,20 @@
 	.ct-series-a .ct-bar {
 		stroke: #8DCCFF;
 		stroke-width: 30px;
+	}
+}
+
+.received-cash {
+	width: 700px;
+	height: 300px;
+	margin-bottom: 80px;
+	margin-left: 80px;
+	.ct-series-a .ct-bar {
+		stroke: #8DCCFF;
+		stroke-width: 30px;
+	}
+	.ct-series-b .ct-bar {
+		stroke: #FFA9A1;
+		stroke-width: 15px;
 	}
 }

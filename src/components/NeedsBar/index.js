@@ -97,7 +97,7 @@ export default class NeedsBar extends React.Component {
 				showLabel: false,
 				offset: 100
 			},
-			high: 100,
+			high: 30,
 		};
 		var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
 		var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
@@ -110,6 +110,7 @@ export default class NeedsBar extends React.Component {
 	render() {
 		var needsMetTotal = 0;
 		var needsUnmetTotal = 0;
+		var total_assistance = 358;
 
 		barData.district_wise.map(function(item) {
 			needsMetTotal += Number(item[dataConstants.needs_met]);
@@ -150,13 +151,13 @@ export default class NeedsBar extends React.Component {
 				(Number(barData.district_wise[3][dataConstants.needs_met]) +
 				Number(barData.district_wise[3][dataConstants.needs_unmet]))) * 10000) / 100,
 			], [
-				Number(barData.aggregate.assistance[0]),
-				Number(barData.aggregate.assistance[1]),
-				Number(barData.aggregate.assistance[2]),
-				Number(barData.aggregate.assistance[3]),
-				Number(barData.aggregate.assistance[4]),
-				Number(barData.aggregate.assistance[5]),
-				Number(barData.aggregate.assistance[6])
+				Math.round((Number(barData.aggregate.assistance[0]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[1]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[2]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[3]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[4]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[5]) / total_assistance) * 10000) / 100,
+				Math.round((Number(barData.aggregate.assistance[6]) / total_assistance) * 10000) / 100,
 			]]
 		);
 		return(

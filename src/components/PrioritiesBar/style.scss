@@ -1,3 +1,46 @@
 .debt{
 	margin-left: 150px;
 }
+
+.legend {
+	position: absolute;
+	right: 200px;
+	width: 220px;
+	height: 100px;
+	background: white;
+	outline: 1px solid lightgrey;
+}
+
+.first,.second {
+	padding: 10px 0px 10px 15px;
+}
+
+.first-icon {
+	display: inline-block;
+	margin-right: 20px;
+	width: 20px;
+	height: 20px;
+	background-color: #8DCCFF;
+}
+
+.second-icon {
+	display: inline-block;
+	margin-right: 20px;
+	width: 20px;
+	height: 20px;
+	background-color: #FFA9A1;
+}
+
+.first-label {
+	display: inline-block;
+	border-bottom: none;
+	width: 140px;
+	vertical-align: top;
+}
+
+.second-label {
+	display: inline-block;
+	border-bottom: none;
+	width: 130px;
+	vertical-align: middle;
+}

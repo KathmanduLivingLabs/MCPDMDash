@@ -31,17 +31,17 @@
 }
 
 .area-spending {
-	width: 700px;
+	width: 82%;
 	height: 300px;
 	margin-bottom: 80px;
 	margin-left: 80px;
 	.ct-series-a .ct-bar {
 		stroke: #8DCCFF;
-		stroke-width: 30px;
+		stroke-width: 15px;
 	}
 	.ct-series-b .ct-bar {
 		stroke: #FFA9A1;
-		stroke-width: 30px;
+		stroke-width: 15px;
 	}
 }
 
@@ -109,3 +109,6 @@
 	fill: rgba(0, 0, 0, 0) !important;
 }
 
+.percent-text {
+	font-size: 0.75rem;
+}
