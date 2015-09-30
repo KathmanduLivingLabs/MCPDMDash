@@ -9,3 +9,13 @@
 .title-margin {
 	margin-left: -90px;
 }
+
+.needs-breakdown {
+	width: 70%;
+	height: 300px;
+	margin-left: 80px;
+	.ct-series-a .ct-bar {
+		stroke: #FFA9A1;
+		stroke-width: 30px;
+	}
+}
