@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "33d4bf92ba542953b55a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9742a5bb212f10d12efd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9702,6 +9702,11 @@
 	  var component = typeof internalInstance.getPublicInstance === 'function' ?
 	    internalInstance.getPublicInstance() :
 	    internalInstance;
+
+	  if (!component) {
+	    // React 0.14 stateless component has no instance
+	    return;
+	  }
 
 	  for (var autoBindKey in component.__reactAutoBindMap) {
 	    if (!component.__reactAutoBindMap.hasOwnProperty(autoBindKey)) {
@@ -38344,7 +38349,7 @@
 						{ className: 'navbar-buttons-group' },
 						React.createElement(
 							'a',
-							{ className: 'nav-button active', href: '#',
+							{ className: 'nav-button active',
 								onClick: this.setActiveView.bind(this, viewConstants.survey) },
 							React.createElement(
 								'span',
@@ -38354,7 +38359,7 @@
 						),
 						React.createElement(
 							'a',
-							{ className: 'nav-button', href: '#',
+							{ className: 'nav-button',
 								onClick: this.setActiveView.bind(this, viewConstants.needs) },
 							React.createElement(
 								'span',
@@ -38364,7 +38369,7 @@
 						),
 						React.createElement(
 							'a',
-							{ className: 'nav-button', href: '#',
+							{ className: 'nav-button',
 								onClick: this.setActiveView.bind(this, viewConstants.solar) },
 							React.createElement(
 								'span',
@@ -38374,7 +38379,7 @@
 						),
 						React.createElement(
 							'a',
-							{ className: 'nav-button', href: '#',
+							{ className: 'nav-button',
 								onClick: this.setActiveView.bind(this, viewConstants.priorities) },
 							React.createElement(
 								'span',
@@ -38384,7 +38389,7 @@
 						),
 						React.createElement(
 							'a',
-							{ className: 'nav-button', href: '#',
+							{ className: 'nav-button',
 								onClick: this.setActiveView.bind(this, viewConstants.others) },
 							React.createElement(
 								'span',
@@ -38927,7 +38932,7 @@
 
 
 	// module
-	exports.push([module.id, ".chart-title-needs {\n  display: inline-block; }\n\n.needs-met .chart-title-needs {\n  margin-left: 20px !important; }\n\n.title-margin {\n  margin-left: -90px; }\n\n.needs-breakdown {\n  width: 70%;\n  height: 300px;\n  margin-left: 80px; }\n  .needs-breakdown .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n", ""]);
+	exports.push([module.id, ".chart-title-needs {\n  display: inline-block; }\n\n.needs-met .chart-title-needs {\n  margin-left: 20px !important; }\n\n.browser-safari .needs-unmet {\n  margin-bottom: 40px; }\n\n.browser-firefox .needs-met {\n  margin-bottom: 40px; }\n\n.title-margin {\n  margin-left: -90px; }\n\n.needs-breakdown {\n  width: 70%;\n  height: 300px;\n  margin-left: 80px; }\n  .needs-breakdown .ct-series-a .ct-bar {\n    stroke: #FFA9A1;\n    stroke-width: 30px; }\n", ""]);
 
 	// exports
 
@@ -39738,7 +39743,12 @@
 				return _react2['default'].createElement(
 					'div',
 					{ className: 'footer' },
-					'© Designed and Developed by Kathmandu Living Labs'
+					_react2['default'].createElement(
+						'a',
+						{ href: 'http://www.kathmandulivinglabs.org', target: '_blank' },
+						'© Designed and Developed by Kathmandu Living Labs'
+					),
+					' CC-BY-SA'
 				);
 			}
 		}]);
