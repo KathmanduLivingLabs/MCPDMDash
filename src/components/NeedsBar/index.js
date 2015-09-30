@@ -51,6 +51,11 @@ export default class NeedsBar extends React.Component {
 			labels: ['Sindhupalchok', 'Dolakha', 'Nuwakot', 'Kavre'],
 			series: [data[1]]
 		};
+		this.chartNeedsData[2] = {
+			labels: ['NFI', 'Cash', 'Food', 
+				'Medical Care', 'Supplies of Temporary Shelter', 'Tents', 'Other Assistance'],
+			series: [data[2]]
+		};
 	}
 
 	makePercentCircles(chart, valueAxis, textMarginX, textMarginY, horizBar) {
@@ -83,10 +88,23 @@ export default class NeedsBar extends React.Component {
 			height: 400,
 			high: 100,
 		};
+		var options_2 = {
+			axisX: {
+				showGrid: false,
+			},
+			axisY: {
+				showGrid: false,
+				showLabel: false,
+				offset: 100
+			},
+			high: 100,
+		};
 		var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
 		var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options);
+		var chartAssistance = new Chartist.Bar('.assistance', this.chartNeedsData[2], options_2);
 		this.makePercentCircles(chartNeedsMet, 'y', 18, 5, false);
 		this.makePercentCircles(chartNeedsUnmet, 'y', 18, 5, false);
+		this.makePercentCircles(chartAssistance, 'y', 18, 5, false);
 	}
 
 	render() {
@@ -131,6 +149,14 @@ export default class NeedsBar extends React.Component {
 				Math.round((Number(barData.district_wise[3][dataConstants.needs_unmet]) / 
 				(Number(barData.district_wise[3][dataConstants.needs_met]) +
 				Number(barData.district_wise[3][dataConstants.needs_unmet]))) * 10000) / 100,
+			], [
+				Number(barData.aggregate.assistance[0]),
+				Number(barData.aggregate.assistance[1]),
+				Number(barData.aggregate.assistance[2]),
+				Number(barData.aggregate.assistance[3]),
+				Number(barData.aggregate.assistance[4]),
+				Number(barData.aggregate.assistance[5]),
+				Number(barData.aggregate.assistance[6])
 			]]
 		);
 		return(
@@ -141,6 +167,9 @@ export default class NeedsBar extends React.Component {
 				<div className="vertical-line"></div>
 				<div className="needs-unmet">
 					<span className="chart-title-needs">Respondets who said not all urgently needed items were included</span>
+				</div>
+				<div className="assistance">
+					<span className="chart-heading title-margin">Types of Assistance Received</span>
 				</div>
 			</div>
 		);
