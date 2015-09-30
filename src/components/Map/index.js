@@ -1,5 +1,5 @@
 import React from 'react';
-import EthnicChart from '../EthnicChart';
+import EthnicChart from '../EthinicChart';
 var districtsJson = require('../../data/district1.geojson');
 
 require('./style.scss');

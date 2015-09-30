@@ -31,7 +31,7 @@ export default class NavBar extends React.Component {
 				<span className="navbar-buttons-group">
 					<a className="nav-button active" href="#" 
 						onClick={this.setActiveView.bind(this, viewConstants.survey)}>
-						<span>Survey Completion</span>
+						<span>Respondent Demographics</span>
 					</a>
 					<a className="nav-button" href="#"
 						onClick={this.setActiveView.bind(this, viewConstants.needs)}>

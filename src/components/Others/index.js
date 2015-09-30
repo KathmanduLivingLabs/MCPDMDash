@@ -122,10 +122,10 @@ export default class Others extends React.Component {
 		return(
 			<div className="priorities">
 				<div className="area-spending">
-					<span className="chart-title-spending">Percentage of Respondent Who Received Cash</span>
+					<span className="chart-title-spending">Respondents received cash from these sectors</span>
 				</div>
 				<div className="distance">
-					<span className="chart-title-spending">Distance That People Had To Travel</span>
+					<span className="chart-title-spending">Number of respondents who had to travel to the distribution point</span>
 				</div>
 			</div>
 		);

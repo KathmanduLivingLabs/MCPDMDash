@@ -136,11 +136,11 @@ export default class NeedsBar extends React.Component {
 		return(
 			<div className="needs">
 				<div className="needs-met">
-					<span className="chart-title-needs">Additional Urgent Items Not Needed</span>
+					<span className="chart-title-needs">Respondets who said all urgently needed items were included</span>
 				</div>
 				<div className="vertical-line"></div>
 				<div className="needs-unmet">
-					<span className="chart-title-needs">Nedded Additional Urgent Items</span>
+					<span className="chart-title-needs">Respondets who said not all urgently needed items were included</span>
 				</div>
 			</div>
 		);

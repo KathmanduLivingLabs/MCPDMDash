@@ -136,21 +136,21 @@ export default class SolarBar extends React.Component {
 		return(
 			<div className="solar-impact">
 				<div className="frequency">
-					<span className="chart-title-solar">How often do you use the solar lamp?</span>
+					<span className="chart-title-solar">How frequently the respondents used solar lamps</span>
 				</div>
 				<div className="utility utility_secure">
 					<span className="chart-title-solar">
-						Since using solar lamp: Solar Lamp Enchance Securty
+						Since receiving the solar lamps, they feel more secure at night
 					</span>
 				</div>
 				<div className="utility utility_children">
 					<span className="chart-title-solar">
-						Since using solar lamp: Solar Lamp Helps Children Study
+						Solar lamps help their children study
 					</span>
 				</div>
 				<div className="utility utility_money">
 					<span className="chart-title-solar">
-						Since using solar lamp: Solar Lamp Saves Money
+						Solar lamps help them save money on electricity
 					</span>
 				</div>
 			</div>
