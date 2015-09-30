@@ -29,23 +29,23 @@ export default class NavBar extends React.Component {
 			<div className="navbar">
 				<a className="banner" href="#"></a>
 				<span className="navbar-buttons-group">
-					<a className="nav-button active" href="#" 
+					<a className="nav-button active" 
 						onClick={this.setActiveView.bind(this, viewConstants.survey)}>
 						<span>Respondent Demographics</span>
 					</a>
-					<a className="nav-button" href="#"
+					<a className="nav-button"
 						onClick={this.setActiveView.bind(this, viewConstants.needs)}>
 						<span>Needs Fullfilled</span>
 					</a>
-					<a className="nav-button" href="#"
+					<a className="nav-button"
 						onClick={this.setActiveView.bind(this, viewConstants.solar)}>
 						<span>Solar Lamp Impact</span>
 					</a>
-					<a className="nav-button" href="#"
+					<a className="nav-button"
 						onClick={this.setActiveView.bind(this, viewConstants.priorities)}>
 						<span>Priorities for Spending</span>
 					</a>
-					<a className="nav-button" href="#"
+					<a className="nav-button"
 						onClick={this.setActiveView.bind(this, viewConstants.others)}>
 						<span>Others</span>
 					</a>
