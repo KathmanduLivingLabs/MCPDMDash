@@ -161,11 +161,11 @@ export default class PrioritiesBar extends React.Component {
 					<div className="legend">
 						<div className="first">
 							<div className="first-icon"></div>
-							<div className="first-label">Cash Spent</div>
+							<div className="first-label">Cash Spent %</div>
 						</div>
 						<div className="second">
 							<div className="second-icon"></div>
-							<div className="second-label">Remaining Areas of Spending</div>
+							<div className="second-label">Remaining Areas of Spending %</div>
 						</div>
 					</div>
 				</div>

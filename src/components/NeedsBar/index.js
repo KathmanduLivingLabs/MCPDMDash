@@ -57,7 +57,7 @@ export default class NeedsBar extends React.Component {
 			series: [data[2]]
 		};
 		this.chartNeedsData[3] = {
-			labels: ['Additional Urgent Items not Present in the Kit', 'Shelter Construction Materials', 
+			labels: ['Shelter Construction Materials', 
 				'Food', 'Clothing', 'Medical Supplies', 'Agricultural Inputs', 'Basic Household Items',
 				'Large Household Items', 'Hygine Products', 'Educational Materials'],
 			series: [data[3]]
@@ -110,7 +110,6 @@ export default class NeedsBar extends React.Component {
 			axisY: {
 				offset: 100
 			},
-			high: 30,
 		};
 		var chartNeedsMet = new Chartist.Bar('.needs-met', this.chartNeedsData[0], options);
 		var chartNeedsUnmet = new Chartist.Bar('.needs-unmet', this.chartNeedsData[1], options1_2);
@@ -126,7 +125,7 @@ export default class NeedsBar extends React.Component {
 	render() {
 		var needsMetTotal = 0;
 		var needsUnmetTotal = 0;
-		var total_assistance = 358;
+		var total_assistance = 403;
 
 		barData.district_wise.map(function(item) {
 			needsMetTotal += Number(item[dataConstants.needs_met]);
@@ -184,7 +183,6 @@ export default class NeedsBar extends React.Component {
 				Number(barData.aggregate.breakdown[6]),
 				Number(barData.aggregate.breakdown[7]),
 				Number(barData.aggregate.breakdown[8]),
-				Number(barData.aggregate.breakdown[9])
 			]]
 		);
 		return(

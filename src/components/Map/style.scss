@@ -31,3 +31,13 @@
 		background-color: #B2495B;
 	}
 }
+
+.map-legend {
+	position: absolute;
+	right: 200px;
+	width: 220px;
+	height: 220px;
+	background: white;
+	outline: 1px solid lightgrey;
+	z-index: 20000;
+}
